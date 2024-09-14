@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d71febcdc5a7b46ba809837f750309, type: 3}
   m_Name: TwitchSettings
   m_EditorClassIdentifier: 
-  initializeOnAwake: 1
+  initializeOnAwake: 0
   isDebugMode: 1
   clientId: c7m69ny3eyw0tcfc3ryi0yvgdcxng8
   commandPrefix: '!'
@@ -23,6 +23,9 @@ MonoBehaviour:
     enabled: 1
     cooldown: 0
   - name: move_object
+    enabled: 1
+    cooldown: 0
+  - name: spawn
     enabled: 1
     cooldown: 0
   - name: join

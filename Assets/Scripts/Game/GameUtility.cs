@@ -4,10 +4,10 @@ using UnityEngine;
 
 public static class GameUtility
 {
-    public static void PlaySound(this AudioSource audioSource, string soundKey)
+    public static void playSound(this AudioSource audioSource, string soundKey)
     {
         audioSource.clip = AudioManager.getAudioClip(soundKey);
         audioSource.Play();
     }
-    public static void PlaySoundIfReady(this AudioSource audioSource, string soundKey) { if (!audioSource.isPlaying) audioSource.PlaySound(soundKey); }
+    public static void playSoundIfReady(this AudioSource audioSource, string soundKey) { if (!audioSource.isPlaying) audioSource.playSound(soundKey); }
 }

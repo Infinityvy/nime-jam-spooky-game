@@ -13,21 +13,21 @@ public class UISFXTrigger : MonoBehaviour
 
     public void playHover()
     {
-        source.sfxSource.PlaySound("button_hover");
+        source.sfxSource.playSound("button_hover");
     }
 
     public void playClick()
     {
-        source.sfxSource.PlaySoundIfReady("button_press_0");
+        source.sfxSource.playSoundIfReady("button_press_0");
     }
 
     public void playClickMaster()
     {
-        source.masterSource.PlaySoundIfReady("button_press_1");
+        source.masterSource.playSoundIfReady("button_press_1");
     }
 
     public void playClickMusic()
     {
-        source.musicSource.PlaySoundIfReady("piano_0");
+        source.musicSource.playSoundIfReady("piano_0");
     }
 }
