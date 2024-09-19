@@ -17,6 +17,10 @@ public class Session : MonoBehaviour
 
         userMaster = new UserMaster();
 
+        GameInputs.initiate();
+
+        Cursor.lockState = CursorLockMode.Confined;
+
         //TwitchManager.OnTwitchCommandReceived += onCommand;
     }
 

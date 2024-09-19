@@ -6,36 +6,38 @@ using UnityEngine;
 
 public class WorldGenerator : MonoBehaviour
 {
-    private TileNodePrefab[] tilePrefabs;
+    private TilePrefab[] tilePrefabs;
 
     public static readonly int worldSize = 11;
-    public static readonly int tileScale = 20;
+    public static readonly int tileScale = 10;
 
 
-    private TileNode[,] worldTiles;
+    private Tile[,] worldTiles;
 
     private void Start()
     {
-        tilePrefabs = Resources.LoadAll<TileNodePrefab>("Tiles");
+        tilePrefabs = Resources.LoadAll<TilePrefab>("Tiles");
 
         generateWorld();
+
+        PlayerMovement.instance.transform.position = new Vector3Int(0, 0, worldSize / 2) * tileScale;
     }
 
     private void generateWorld()
     {
-        worldTiles = new TileNode[worldSize, worldSize];
+        worldTiles = new Tile[worldSize, worldSize];
 
         Vector3Int entrancePos = new Vector3Int(0, 0, worldSize / 2);
 
-        worldTiles[entrancePos.x, entrancePos.z] = new TileNode(tilePrefabs[1].transform,entrancePos, Quaternion.identity, transform, tilePrefabs[1].connectingSides);
+        worldTiles[entrancePos.x, entrancePos.z] = new Tile(tilePrefabs[1].transform, entrancePos, Quaternion.identity, transform, tilePrefabs[1].connectingSides);
 
         StartCoroutine(generateAdjacentTiles(entrancePos.x, entrancePos.z));
     }
 
     private void generateTile(int x, int z)
     {
-        TileNode[] adjacentTiles = getAdjacentTiles(x, z);
-        Debug.Log(x + "|" + z + ": " + string.Join(", ", adjacentTiles.Select(item => item != null ? item.ToString() : "null")));
+        Tile[] adjacentTiles = getAdjacentTiles(x, z);
+        //Debug.Log(x + "|" + z + ": " + string.Join(", ", adjacentTiles.Select(item => item != null ? item.ToString() : "null")));
 
         int requiredConnections = 0b0000;
         int existingAjdacentTiles = 0b0000;
@@ -54,38 +56,32 @@ public class WorldGenerator : MonoBehaviour
             }
         }
 
-        Debug.Log(System.Convert.ToString(requiredConnections ^ existingAjdacentTiles, 2));
+        //Debug.Log(System.Convert.ToString(requiredConnections ^ existingAjdacentTiles, 2));
 
-        //if (requiredConnections == 0 || existingAjdacentTiles == 0)
-        //{
-        //    worldTiles[x, z] = new TileNode(new Vector3Int(x, 0, z));
-        //    return;
-        //}
 
         List<(int, int)> compatibleTiles = getCompatibleTiles(requiredConnections, requiredConnections ^ existingAjdacentTiles);
 
         if (compatibleTiles.Count == 0)
         {
-            worldTiles[x, z] = new TileNode(new Vector3Int(x, 0, z));
+            worldTiles[x, z] = new Tile(new Vector3Int(x, 0, z), transform);
             return;
         }
 
-        Debug.Log(string.Join(", ", compatibleTiles.Select(item => System.Convert.ToString(rotateRight(tilePrefabs[item.Item1].connectingSides, item.Item2), 2))));
+        //Debug.Log(string.Join(", ", compatibleTiles.Select(item => System.Convert.ToString(rotateRight(tilePrefabs[item.Item1].connectingSides, item.Item2), 2))));
 
         (int, int) indexAndRotation = compatibleTiles[Random.Range(0, compatibleTiles.Count)];
 
-        TileNodePrefab prefab = tilePrefabs[indexAndRotation.Item1];
+        TilePrefab prefab = tilePrefabs[indexAndRotation.Item1];
 
-        worldTiles[x, z] = new TileNode(prefab.transform, new Vector3Int(x, 0, z), Quaternion.Euler(Vector3.up * 90 * indexAndRotation.Item2), transform, rotateRight(prefab.connectingSides, indexAndRotation.Item2));
+        worldTiles[x, z] = new Tile(prefab.transform, new Vector3Int(x, 0, z), Quaternion.Euler(Vector3.up * 90 * indexAndRotation.Item2), transform, rotateRight(prefab.connectingSides, indexAndRotation.Item2));
     }
 
 
     private IEnumerator generateAdjacentTiles(int x, int z)
     {
-        //yield return new WaitForSeconds(Random.Range(0f, 0.1f));
         yield return 0;
 
-        TileNode[] adjacentTiles = getAdjacentTiles(x, z);
+        Tile[] adjacentTiles = getAdjacentTiles(x, z);
 
         for (int i = 0; i < adjacentTiles.Length; ++i)
         {
@@ -102,9 +98,9 @@ public class WorldGenerator : MonoBehaviour
     /// <summary>
     /// Sorted in order: top, right, bottom, left. TileNode will be null if no tile exists in that place.
     /// </summary>
-    private TileNode[] getAdjacentTiles(int x, int z)
+    private Tile[] getAdjacentTiles(int x, int z)
     {
-        TileNode[] tiles = new TileNode[4];
+        Tile[] tiles = new Tile[4];
 
         for(int i = 0; i < 4; i++)
         {
@@ -112,7 +108,7 @@ public class WorldGenerator : MonoBehaviour
 
             if (pos.Item1 < 0 || pos.Item1 >= worldSize || pos.Item2 < 0 || pos.Item2 >= worldSize)
             {
-                tiles[i] = new TileNode(new Vector3Int(pos.Item1, 0, pos.Item2));
+                tiles[i] = new Tile(new Vector3Int(pos.Item1, 0, pos.Item2), transform);
             }
             else
             {
@@ -148,7 +144,7 @@ public class WorldGenerator : MonoBehaviour
         return pos;
     }
 
-    private bool checkTileForConnections(TileNode tile, int side)
+    private bool checkTileForConnections(Tile tile, int side)
     {
         bool result = (tile.connectingSides & side) == side;
 

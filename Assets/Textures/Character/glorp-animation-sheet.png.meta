@@ -1,0 +1,940 @@
+fileFormatVersion: 2
+guid: 577c3ad176bfd834e99b2d7094b7823b
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 25
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: glorp-animation-sheet_0
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 384
+        width: 25
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 496fb41c1a9513748b0a50e6228b4230
+      internalID: -1506056281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_1
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 384
+        width: 25
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a98bfcc43ec89d04a85dbd413e72de45
+      internalID: -1813637272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_2
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 384
+        width: 25
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da60952d38a436f4ead0e4a954e3c5ca
+      internalID: -1230790727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_3
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 384
+        width: 25
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f29fe7d7df06db4ba24b11ed0330431
+      internalID: -1422786036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_4
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 384
+        width: 25
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92859fa17f22a9c4d89a476dde7371f7
+      internalID: 461861478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_16
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 256
+        width: 27
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 387d742585062a643b0109a7c93614bd
+      internalID: -829452580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_17
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 256
+        width: 27
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47b44d6fb62dd2649b4701183df67d05
+      internalID: 331738593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_18
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 256
+        width: 27
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a09bcc323ceb8b24c91c8ecf234fd87f
+      internalID: 1808420015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_19
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 256
+        width: 27
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5ef53cf5886a204b9b268789e0634bb
+      internalID: -617512996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_20
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 256
+        width: 27
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f5c4414de7403443884252d5fecc44a
+      internalID: -2001318438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_21
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 256
+        width: 27
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ada827ff9c941284ea67884fcf0fdd6a
+      internalID: -543830783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_22
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 256
+        width: 27
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ce4cd9a5fbfed043af245b669463243
+      internalID: -1323109380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_23
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 257
+        width: 27
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 730bdae794082994bb2490e79c053b7f
+      internalID: -1611180188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_32
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 64
+        width: 70
+        height: 63
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97fcbefd1233e6b468f9e98b105e8d6b
+      internalID: 256297611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_33
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 64
+        width: 70
+        height: 63
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2b15783c09886c46a9fb02dea5ba518
+      internalID: -747119933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_34
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 64
+        width: 70
+        height: 63
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40f7f77e36887174ca8c10957771922d
+      internalID: -743544212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_35
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 64
+        width: 70
+        height: 63
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec745fb697bfcd746ad2fe0dba6bd7f9
+      internalID: 179375754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_36
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 64
+        width: 70
+        height: 63
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 543e346577fc8a14982203ac0c9ccbc6
+      internalID: 2108983371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_37
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 64
+        width: 70
+        height: 63
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8136c367daf68c4381a3d81d38d150f
+      internalID: 799153323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_38
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 0
+        width: 25
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a156729d9982f2347b0d61a0459e9a89
+      internalID: -826921908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_40
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 0
+        width: 25
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eef38d2c8805add4fa7339323ce53b36
+      internalID: -1875950890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_41
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 0
+        width: 25
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cbc80a00feb37548a51ef401d310141
+      internalID: -1636913930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_42
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 0
+        width: 25
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16b67db3ab63fc342bb7f901483192f6
+      internalID: -1384648703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_43
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 0
+        width: 25
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b57ce28d56bf3c4dbef442cc865176b
+      internalID: -1401815999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_44
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 0
+        width: 25
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77b7f213170be204c908ac36d413a23e
+      internalID: -662209509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_45
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 0
+        width: 27
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67b67001f202f714aa16880419ae5005
+      internalID: -1677834918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_46
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 0
+        width: 46
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d59dc6b971223a4faeae8f11686a2db
+      internalID: -1147314215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_47
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 0
+        width: 47
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bb57357d5d167a469718d07e89778ec
+      internalID: 766464409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_48
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 0
+        width: 47
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1ae0e1876c78ec4286dfc0cc209bc25
+      internalID: -351524802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_5
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 319
+        width: 25
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8390d6c66be04ef4abfc76903e16ec1b
+      internalID: 1379023327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_6
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 319
+        width: 25
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a1c56523c9ef9c4191d35c781794def
+      internalID: -902134166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_7
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 320
+        width: 25
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09f1a2f8eac2e9c4fafec946b725e2d2
+      internalID: 1642677070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_8
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 320
+        width: 25
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84b8f8b680ed34b4db96a0ac1d74a909
+      internalID: 2048260008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_9
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 320
+        width: 25
+        height: 50
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bbeb5ae900238d49ae64275d43acbf1
+      internalID: 1468256496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_10
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 320
+        width: 25
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96917f7f9d28220479c2f2afcdff8404
+      internalID: -640361517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_11
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 320
+        width: 25
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0d456b9f3251ce49911bd1828e8417b
+      internalID: 1941298903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glorp-animation-sheet_12
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 320
+        width: 25
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34d299e7e4621f14b8f4c080db15f16b
+      internalID: 1538569659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 9a24583572ec5dd439359b803a77b335
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      glorp-animation-sheet_0: -1506056281
+      glorp-animation-sheet_1: -1813637272
+      glorp-animation-sheet_10: -640361517
+      glorp-animation-sheet_11: 1941298903
+      glorp-animation-sheet_12: 1538569659
+      glorp-animation-sheet_13: 521196560
+      glorp-animation-sheet_14: 1263133826
+      glorp-animation-sheet_15: 273760138
+      glorp-animation-sheet_16: -829452580
+      glorp-animation-sheet_17: 331738593
+      glorp-animation-sheet_18: 1808420015
+      glorp-animation-sheet_19: -617512996
+      glorp-animation-sheet_2: -1230790727
+      glorp-animation-sheet_20: -2001318438
+      glorp-animation-sheet_21: -543830783
+      glorp-animation-sheet_22: -1323109380
+      glorp-animation-sheet_23: -1611180188
+      glorp-animation-sheet_24: -1885853990
+      glorp-animation-sheet_25: 305076831
+      glorp-animation-sheet_26: 637832339
+      glorp-animation-sheet_27: -1807435861
+      glorp-animation-sheet_28: 1329073522
+      glorp-animation-sheet_29: 553884511
+      glorp-animation-sheet_3: -1422786036
+      glorp-animation-sheet_30: -1886737149
+      glorp-animation-sheet_31: 145978005
+      glorp-animation-sheet_32: 256297611
+      glorp-animation-sheet_33: -747119933
+      glorp-animation-sheet_34: -743544212
+      glorp-animation-sheet_35: 179375754
+      glorp-animation-sheet_36: 2108983371
+      glorp-animation-sheet_37: 799153323
+      glorp-animation-sheet_38: -826921908
+      glorp-animation-sheet_39: 1873936980
+      glorp-animation-sheet_4: 461861478
+      glorp-animation-sheet_40: -1875950890
+      glorp-animation-sheet_41: -1636913930
+      glorp-animation-sheet_42: -1384648703
+      glorp-animation-sheet_43: -1401815999
+      glorp-animation-sheet_44: -662209509
+      glorp-animation-sheet_45: -1677834918
+      glorp-animation-sheet_46: -1147314215
+      glorp-animation-sheet_47: 766464409
+      glorp-animation-sheet_48: -351524802
+      glorp-animation-sheet_5: 1379023327
+      glorp-animation-sheet_6: -902134166
+      glorp-animation-sheet_7: 1642677070
+      glorp-animation-sheet_8: 2048260008
+      glorp-animation-sheet_9: 1468256496
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

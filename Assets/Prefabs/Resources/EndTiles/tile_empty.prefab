@@ -58,6 +58,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 037578acd543be24792bf8b05ca2a200,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ab0b7878e7d434d4dbcadd85c59da524, type: 2}
     - target: {fileID: 919132149155446097, guid: 037578acd543be24792bf8b05ca2a200,
         type: 3}
       propertyPath: m_Name
@@ -89,7 +94,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7304884360305735174}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f8dce90049483f44483e64c599cc3eac, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -103,7 +108,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 2626306723391237139, guid: 037578acd543be24792bf8b05ca2a200, type: 3}
+  m_Mesh: {fileID: 5814556722673680954, guid: 037578acd543be24792bf8b05ca2a200, type: 3}
 --- !u!114 &-8822379900629009242
 MonoBehaviour:
   m_ObjectHideFlags: 0
