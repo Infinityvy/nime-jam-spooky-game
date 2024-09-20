@@ -2,16 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlashlightRotator : MonoBehaviour
+public class Flashlight : MonoBehaviour
 {
+    public static Flashlight instance;
+
+    private new Light light;
+
     void Start()
     {
-        
+        light = GetComponent<Light>();
+        instance = this;
     }
 
     void Update()
     {
         rotateFlashlightToCursor();
+    }
+
+    public void toggleFlashlight(bool state)
+    {
+        light.enabled = state;
     }
 
     private void rotateFlashlightToCursor()
