@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System;
+using Models.Items;
+using Toolbar;
 using UnityEngine;
-
+using Random = UnityEngine.Random;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -17,6 +17,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+    [Obsolete]
+    [SerializeField]
+    private ToolbarController toolbarController;
+
+    [Obsolete]
+    public BaseItem[] testItems;
+    
     public bool isMoving = false;
 
     private float maxSpeed = 4.5f;
@@ -37,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         move();
+        InteractWithInventory();
     }
 
     private void move()
@@ -113,6 +121,44 @@ public class PlayerMovement : MonoBehaviour
             if (dotProduct > 0) spriteRenderer.flipX = true;
             else spriteRenderer.flipX = false;
         }
+    }
 
+    [Obsolete("Should be in some actual player controller object also this is just for testing")]
+    private void InteractWithInventory()
+    {
+        KeyCode[] numberKeys =
+        {
+            KeyCode.Alpha1,
+            KeyCode.Alpha2,
+            KeyCode.Alpha3,
+            KeyCode.Alpha4
+        };
+        const KeyCode removeItemKey = KeyCode.T;
+        const KeyCode addRandomItemKey = KeyCode.Y;
+        const KeyCode leftMouseKey = KeyCode.Mouse0;
+        for (int i = 0; i < numberKeys.Length; i++)
+        {
+            KeyCode key = numberKeys[i];
+            if (Input.GetKeyDown(key))
+            {
+                toolbarController.SelectSlot(i);
+            }
+        }
+
+        if (Input.GetKeyDown(removeItemKey))
+        {
+            toolbarController.RemoveItemAtSelectedSlot();
+        }
+
+        if (Input.GetKeyDown(addRandomItemKey))
+        {
+            int randomIndex = Random.Range(0, 2);
+            toolbarController.AddItemAtSelectedSlot(testItems[randomIndex]);
+        }
+
+        if (Input.GetKeyDown(leftMouseKey))
+        {
+            toolbarController.InteractWithSelectedItem();
+        }
     }
 }
