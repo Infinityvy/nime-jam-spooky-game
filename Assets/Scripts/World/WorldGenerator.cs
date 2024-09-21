@@ -8,15 +8,27 @@ public class WorldGenerator : MonoBehaviour
 {
     private TilePrefab[] tilePrefabs;
 
+    private Dictionary<string, Transform> resourcePrefabs = new Dictionary<string, Transform>();
+
     public static readonly int worldSize = 11;
     public static readonly int tileScale = 10;
 
+    private static int resourceAmount = 20;
+
 
     private Tile[,] worldTiles;
+    private int generatedTileCount = 0;
+    private bool fullyGenerated = false;
 
     private void Start()
     {
         tilePrefabs = Resources.LoadAll<TilePrefab>("Tiles");
+
+        Transform[] resourcePrefabsTmp = Resources.LoadAll<Transform>("ResourceNodes");
+        foreach (Transform prefab in resourcePrefabsTmp)
+        {
+            resourcePrefabs.Add(prefab.name, prefab);
+        }
 
         generateWorld();
 
@@ -31,11 +43,20 @@ public class WorldGenerator : MonoBehaviour
 
         worldTiles[entrancePos.x, entrancePos.z] = new Tile(tilePrefabs[1].transform, entrancePos, Quaternion.identity, transform, tilePrefabs[1].connectingSides);
 
+        generatedTileCount = 1;
+
         StartCoroutine(generateAdjacentTiles(entrancePos.x, entrancePos.z));
     }
 
     private void generateTile(int x, int z)
     {
+        generatedTileCount++;
+        if (generatedTileCount == worldSize * worldSize && !fullyGenerated)
+        {
+            fullyGenerated = true;
+            Invoke(nameof(generateResources), 0);
+        }
+
         Tile[] adjacentTiles = getAdjacentTiles(x, z);
         //Debug.Log(x + "|" + z + ": " + string.Join(", ", adjacentTiles.Select(item => item != null ? item.ToString() : "null")));
 
@@ -196,7 +217,7 @@ public class WorldGenerator : MonoBehaviour
         return compatibleTiles;
     }
 
-    public int rotateRight(int value, int rotations)
+    private int rotateRight(int value, int rotations)
     {
         rotations = rotations % 4;
 
@@ -208,4 +229,60 @@ public class WorldGenerator : MonoBehaviour
         return value;
     }
 
+    private void generateResources()
+    {
+        for (int i = 0; i < resourceAmount; i++)
+        {
+            int x = Random.Range(0, worldSize);
+            int z = Random.Range(0, worldSize);
+
+            Tile tile = worldTiles[x, z];
+            if(tile == null || tile.nodeZones == null)
+            {
+                i--;
+                continue;
+            }
+
+            Vector3 nodePosition = tile.getRandomNodePosition();
+
+            Instantiate(resourcePrefabs["resource_iron"], nodePosition, Quaternion.identity, transform);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if(!Application.isPlaying) return;
+
+        Gizmos.color = Color.green;
+
+        foreach(Tile tile in worldTiles)
+        {
+            if(tile.nodeZones == null) continue;
+            foreach(Zone zone in tile.nodeZones)
+            {
+                (Vector3, Vector3) bounds = zone.getBounds();
+
+                Vector3 corner1 = bounds.Item1;
+                Vector3 corner2 = bounds.Item2;
+
+                // Calculate the min and max for x and z
+                float minX = Mathf.Min(corner1.x, corner2.x);
+                float maxX = Mathf.Max(corner1.x, corner2.x);
+                float minZ = Mathf.Min(corner1.z, corner2.z);
+                float maxZ = Mathf.Max(corner1.z, corner2.z);
+
+                // Get the 4 corner positions
+                Vector3 bottomLeft = new Vector3(minX, 0, minZ) + tile.tileObject.position;
+                Vector3 bottomRight = new Vector3(maxX, 0, minZ) + tile.tileObject.position;
+                Vector3 topLeft = new Vector3(minX, 0, maxZ) + tile.tileObject.position;
+                Vector3 topRight = new Vector3(maxX, 0, maxZ) + tile.tileObject.position;
+
+
+                Gizmos.DrawLine(bottomLeft, bottomRight);
+                Gizmos.DrawLine(bottomLeft, topLeft);
+                Gizmos.DrawLine(topRight, bottomRight);
+                Gizmos.DrawLine(topRight, topLeft);
+            }
+        }
+    }
 }
