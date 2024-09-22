@@ -7,8 +7,7 @@ namespace Toolbar
 {
     public class ToolbarController : MonoBehaviour
     {
-        [SerializeField]
-        private int inventorySize;
+        public static int inventorySize = 4;
 
         [SerializeField]
         private ToolbarUI toolbarUI;
@@ -69,6 +68,11 @@ namespace Toolbar
                     toggleableItem.Toggle();
                     break;
             }
+        }
+
+        public int getSelectedSlotIndex()
+        {
+            return _toolbar.SelectedIndex;
         }
     }
 }
