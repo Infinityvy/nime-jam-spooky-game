@@ -14,15 +14,18 @@ namespace Toolbar
         private ToolbarUI toolbarUI;
 
         private ToolbarModel _toolbar;
-        public BaseItem[] testItems;
 
         private void Awake()
         {
-            _toolbar = new ToolbarModel();
-            _toolbar.Initialize(inventorySize);
-            _toolbar.SetItems(testItems);
+            if (toolbarUI is null)
+            {
+                throw new UnityException("Toolbar UI reference missing");
+            }
+
+            _toolbar = new ToolbarModel(inventorySize);
             toolbarUI.InitializeToolbar(inventorySize);
             toolbarUI.UpdateToolbarSlots(_toolbar.Items);
+            toolbarUI.UpdateSelectedSlot(_toolbar.SelectedIndex);
         }
 
         public void SelectSlot(int targetIndex)

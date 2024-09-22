@@ -5,13 +5,30 @@ namespace UI.Toolbar
 {
     public class ToolbarSlotUI : MonoBehaviour
     {
-        [SerializeField] private Image toolBarSlotImage;
-        [SerializeField] private Image selectedSlotImage;
+        [SerializeField]
+        private Image toolBarSlotImage;
+
+        [SerializeField]
+        private Image selectedSlotImage;
+
+        private void Awake()
+        {
+            if (toolBarSlotImage is null)
+            {
+                throw new UnityException("Toolbar Slot Image Reference Missing In Toolbar Slot UI");
+            }
+
+            if (selectedSlotImage is null)
+            {
+                throw new UnityException("Toolbar Selected Slot Image Reference Missing In Toolbar Slot UI");
+            }
+        }
 
         public void UpdateItemSprite(Sprite sprite)
         {
             toolBarSlotImage.sprite = sprite;
-            toolBarSlotImage.gameObject.SetActive(!Equals(toolBarSlotImage.sprite, null));
+            bool imageActive = toolBarSlotImage.sprite;
+            toolBarSlotImage.gameObject.SetActive(imageActive);
         }
 
         public void SelectItem()

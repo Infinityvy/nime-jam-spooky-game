@@ -153,10 +153,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventorySize: 4
   toolbarUI: {fileID: 1213854446}
-  testItems:
-  - {fileID: 11400000, guid: 792cb8adfb617f7418f7bc193894350a, type: 2}
-  - {fileID: 11400000, guid: cc675cd001f390c4087827c7efb8375a, type: 2}
-  - {fileID: 11400000, guid: 792cb8adfb617f7418f7bc193894350a, type: 2}
 --- !u!4 &56148203
 Transform:
   m_ObjectHideFlags: 0

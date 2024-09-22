@@ -10,7 +10,21 @@ namespace UI.Toolbar
         [SerializeField] private ToolbarSlotUI toolbarSlotUIPrefab;
         [SerializeField] private RectTransform toolbarPanel;
         private ToolbarSlotUI[] _toolbarSlots;
-        private int _selectedSlot = -1;
+        private int _selectedSlot;
+
+
+        private void Awake()
+        {
+            if (toolbarSlotUIPrefab is null)
+            {
+                throw new UnityException("Toolbar Slot UI Prefab Reference Is Missing In Toolbar UI");
+            }
+
+            if (toolbarPanel is null)
+            {
+                throw new UnityException("Toolbar Panel Rect Transform Reference Is Missing In Toolbar UI");
+            }
+        }
 
         public void InitializeToolbar(int toolbarSize)
         {

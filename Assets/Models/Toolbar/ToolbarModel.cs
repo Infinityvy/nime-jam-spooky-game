@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Extensions;
 using Models.Items;
 
@@ -6,20 +5,12 @@ namespace Models.Toolbar
 {
     public class ToolbarModel
     {
-        public BaseItem[] Items { get; private set; }
-        private int _selectedIndex = -1;
+        public BaseItem[] Items { get; }
+        public int SelectedIndex { get; private set; }
 
-        public void Initialize(int inventorySize)
+        public ToolbarModel(int inventorySize)
         {
             Items = new BaseItem[inventorySize];
-        }
-
-        public void SetItems(IList<BaseItem> items)
-        {
-            for (int i = 0; i < Items.Length; i++)
-            {
-                Items[i] = items[i];
-            }
         }
 
         public bool SelectSlot(int targetIndex)
@@ -29,35 +20,35 @@ namespace Models.Toolbar
                 return false;
             }
 
-            _selectedIndex = targetIndex;
+            SelectedIndex = targetIndex;
             return true;
         }
 
         public bool AddItemAtSelectedSlot(BaseItem itemToAdd)
         {
-            if (!Items.IsIndexInBounds(_selectedIndex))
+            if (!Items.IsIndexInBounds(SelectedIndex))
             {
                 return false;
             }
 
-            Items[_selectedIndex] = itemToAdd;
+            Items[SelectedIndex] = itemToAdd;
             return true;
         }
 
         public bool RemoveItemAtSelectedSlot()
         {
-            if (!Items.IsIndexInBounds(_selectedIndex))
+            if (!Items.IsIndexInBounds(SelectedIndex))
             {
                 return false;
             }
 
-            Items[_selectedIndex] = null;
+            Items[SelectedIndex] = null;
             return true;
         }
 
         public BaseItem GetSelectedItem()
         {
-            return Items[_selectedIndex];
+            return Items.IsIndexInBounds(SelectedIndex) ? Items[SelectedIndex] : null;
         }
     }
 }

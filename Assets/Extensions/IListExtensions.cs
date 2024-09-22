@@ -6,7 +6,7 @@ namespace Extensions
     {
         public static bool IsIndexInBounds(this IList list, int index)
         {
-            return index >= 0 && index < list.Count;
+            return list != null && index >= 0 && index < list.Count;
         }
     }
 }
