@@ -1,10 +1,20 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tile
 {
+    // top, right, bottom, left
+    public int connectingSides = 0b0000;
+
+    public Transform tileObject = null;
+
+    public Vector3Int tilePos = Vector3Int.zero;
+
+    public Zone[] nodeZones = null;
+
+
     public Tile(Vector3Int tilePos, Transform parent) 
     {
         connectingSides = 0b0000;
@@ -13,37 +23,36 @@ public class Tile
         tileObject = GameObject.Instantiate(Resources.Load<Transform>("EndTiles/tile_empty"), tilePos * WorldGenerator.tileScale, Quaternion.identity, parent);
         GameObject.Destroy(tileObject.GetComponent<TilePrefab>());
 
-        tileObject.name += " " + Convert.ToString(connectingSides, 2) + " " + tilePos.ToString();
+        tileObject.name += " " + ToString() + " " + tilePos.ToString();
     }
 
     public Tile(Transform prefab, Vector3Int tilePos, Quaternion rotation, Transform parent, int connectingSides)
     {
         this.tilePos = tilePos;
         this.connectingSides = connectingSides;
-        this.nodes = prefab.GetComponent<TilePrefab>().nodes;
 
         tileObject = GameObject.Instantiate(prefab, tilePos * WorldGenerator.tileScale, rotation, parent);
         GameObject.Destroy(tileObject.GetComponent<TilePrefab>());
 
-        tileObject.name += " " + Convert.ToString(connectingSides, 2) + " " + tilePos.ToString();
+        tileObject.name += " " + ToString() + " " + tilePos.ToString();
 
-        for (int i = 0; i < nodes.Length; i++)
+        this.nodeZones = tileObject.GetComponent<TilePrefab>().nodeZones;
+
+        for (int i = 0; i < nodeZones.Length; i++)
         {
-            nodes[i] = tileObject.rotation * nodes[i];
+            nodeZones[i].rotate(rotation);
         }
     }
 
-    // top, right, bottom, left
-    public int connectingSides = 0b0000;
-
-    public Transform tileObject = null;
-
-    public Vector3Int tilePos = Vector3Int.zero;
-
-    public Vector3[] nodes;
+    public Vector3 getRandomNodePosition()
+    {
+        return nodeZones[Random.Range(0, nodeZones.Length)].getRandomPositionInZone() + tileObject.position;
+    }
 
     public override string ToString()
     {
         return System.Convert.ToString(connectingSides, 2);
     }
+
+    
 }

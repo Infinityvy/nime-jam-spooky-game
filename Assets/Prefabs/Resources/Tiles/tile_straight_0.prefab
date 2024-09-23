@@ -122,3 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectingSides: 10
+  nodeZones:
+  - minBounds: {x: -2, y: 0, z: -5}
+    maxBounds: {x: 2, y: 0, z: 5}
