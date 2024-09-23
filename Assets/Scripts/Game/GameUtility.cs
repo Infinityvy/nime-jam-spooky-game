@@ -10,4 +10,11 @@ public static class GameUtility
         audioSource.Play();
     }
     public static void playSoundIfReady(this AudioSource audioSource, string soundKey) { if (!audioSource.isPlaying) audioSource.playSound(soundKey); }
+
+    public static int loopIndex(int index, int max)
+    {
+        if (index < 0) return max - 1;
+        else if(index >= max) return 0;
+        else return index;
+    }
 }

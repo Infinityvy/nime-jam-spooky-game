@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System;
+using Models.Items;
+using Toolbar;
 using UnityEngine;
-
+using Random = UnityEngine.Random;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     [SerializeField]
     private Animator animator;
-
+    
     public bool isMoving = false;
 
     private float maxSpeed = 4.5f;
@@ -113,6 +113,5 @@ public class PlayerMovement : MonoBehaviour
             if (dotProduct > 0) spriteRenderer.flipX = true;
             else spriteRenderer.flipX = false;
         }
-
     }
 }
