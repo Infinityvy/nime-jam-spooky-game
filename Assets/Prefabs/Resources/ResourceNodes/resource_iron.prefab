@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 8662804796378038748}
   - component: {fileID: 4412768967184608800}
   - component: {fileID: 6295051905787959373}
-  - component: {fileID: 6352035811673998624}
+  - component: {fileID: 4101675854702596104}
   m_Layer: 0
   m_Name: resource_iron
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,14 +85,14 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &6352035811673998624
-SphereCollider:
+--- !u!136 &4101675854702596104
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2824198793303494470}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f8dce90049483f44483e64c599cc3eac, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -103,6 +103,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0.034415483, y: 0.15, z: 0}
