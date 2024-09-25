@@ -8,6 +8,8 @@ public class Session : MonoBehaviour
 {
     public static Session instance { get; private set; }
 
+    public bool paused { private set; get; } = false;
+
     public UserMaster userMaster;
     public TwitchUser lastUser;
 
@@ -26,7 +28,10 @@ public class Session : MonoBehaviour
 
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            togglePauseMenu(!paused);
+        }
     }
 
     void onCommand(TwitchUser user, TwitchCommand command)
@@ -42,5 +47,25 @@ public class Session : MonoBehaviour
         if (teamToJoin > Team.FOUR) teamToJoin = Team.ONE;
 
         return team;
+    }
+
+    private void togglePauseMenu(bool state)
+    {
+        UIMenuLogic.instance.toggleMenu(state);
+        togglePaused(state);
+    }
+
+    public void togglePaused(bool state)
+    {
+        if(state)
+        {
+            Time.timeScale = 0f;
+            paused = true;
+        }
+        else
+        {
+            Time.timeScale = 1.0f;
+            paused = false;
+        }
     }
 }

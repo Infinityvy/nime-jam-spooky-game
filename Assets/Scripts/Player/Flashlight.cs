@@ -16,12 +16,18 @@ namespace Player
 
         private void Update()
         {
+            if(Session.instance.paused) return;
+
             rotateFlashlightToCursor();
+            toggleFlashlight();
         }
 
-        public void toggleFlashlight(bool state)
+        private void toggleFlashlight()
         {
-            light.enabled = state;
+            if (Input.GetKeyDown(GameInputs.keys["Toggle Flashlight"]))
+            {
+                light.enabled = !light.enabled;
+            }
         }
 
         private void rotateFlashlightToCursor()

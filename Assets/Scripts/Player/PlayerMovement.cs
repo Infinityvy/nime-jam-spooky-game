@@ -36,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (Session.instance.paused) return;
+
         move();
     }
 

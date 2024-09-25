@@ -18,7 +18,9 @@ public class PlayerController : MonoBehaviour
 
     private void InteractWithInventory()
     {
-        for(int i = 0; i < ToolbarController.inventorySize; i++)
+        if (Session.instance.paused) return;
+
+        for (int i = 0; i < ToolbarController.inventorySize; i++)
         {
             if (Input.GetKey(GameInputs.keys["Slot " + (i + 1)]))
             {

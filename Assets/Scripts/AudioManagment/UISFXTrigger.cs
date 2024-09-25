@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class UISFXTrigger : MonoBehaviour
 {
-    private UISFXSource source;
+    private UIAudioSource source;
 
     void Start()
     {
-        source = GameObject.Find("UISFX_Source").GetComponent<UISFXSource>();
+        source = GameObject.Find("UIAudioSource").GetComponent<UIAudioSource>();
     }
 
     public void playHover()

@@ -20,6 +20,7 @@ public static class GameInputs
         keys.TryAdd("Interact", KeyCode.E);
         keys.TryAdd("Drop Item", KeyCode.Q);
         keys.TryAdd("Use Item", KeyCode.Mouse0);
+        keys.TryAdd("Toggle Flashlight", KeyCode.F);
         keys.TryAdd("Slot 1", KeyCode.Alpha1);
         keys.TryAdd("Slot 2", KeyCode.Alpha2);
         keys.TryAdd("Slot 3", KeyCode.Alpha3);
