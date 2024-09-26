@@ -1,8 +1,4 @@
-using System;
-using Models.Items;
-using Toolbar;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class PlayerMovement : MonoBehaviour
 {
