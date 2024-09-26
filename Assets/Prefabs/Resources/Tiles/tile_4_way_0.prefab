@@ -68,6 +68,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tile_4_way_0
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6c39d6980b4501044a2a166be73f763f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
