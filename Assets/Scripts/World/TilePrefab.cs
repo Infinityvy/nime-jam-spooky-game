@@ -8,5 +8,5 @@ public class TilePrefab : MonoBehaviour
     [Tooltip("Top, Right, Bottom, Left")]
     public int connectingSides;
 
-    public Zone[] nodeZones;
+    public Zone[] nodeZones = null;
 }

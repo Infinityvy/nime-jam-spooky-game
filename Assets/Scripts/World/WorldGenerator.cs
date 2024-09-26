@@ -7,6 +7,8 @@ using UnityEngine;
 public class WorldGenerator : MonoBehaviour
 {
     private TilePrefab[] tilePrefabs;
+    private TilePrefab emptyTilePrefab;
+    private TilePrefab startTilePrefab;
 
     private Dictionary<string, Transform> resourcePrefabs = new Dictionary<string, Transform>();
 
@@ -23,6 +25,8 @@ public class WorldGenerator : MonoBehaviour
     private void Start()
     {
         tilePrefabs = Resources.LoadAll<TilePrefab>("Tiles");
+        emptyTilePrefab = Resources.Load<TilePrefab>("SpecialTiles/tile_empty");
+        startTilePrefab = Resources.Load<TilePrefab>("SpecialTiles/tile_elevator");
 
         Transform[] resourcePrefabsTmp = Resources.LoadAll<Transform>("ResourceNodes");
         foreach (Transform prefab in resourcePrefabsTmp)
@@ -41,7 +45,7 @@ public class WorldGenerator : MonoBehaviour
 
         Vector3Int entrancePos = new Vector3Int(0, 0, worldSize / 2);
 
-        worldTiles[entrancePos.x, entrancePos.z] = new Tile(tilePrefabs[1].transform, entrancePos, Quaternion.identity, transform, tilePrefabs[1].connectingSides);
+        worldTiles[entrancePos.x, entrancePos.z] = new Tile(startTilePrefab.transform, entrancePos, Quaternion.identity, transform, startTilePrefab.connectingSides);
 
         generatedTileCount = 1;
 
@@ -84,7 +88,7 @@ public class WorldGenerator : MonoBehaviour
 
         if (compatibleTiles.Count == 0)
         {
-            worldTiles[x, z] = new Tile(new Vector3Int(x, 0, z), transform);
+            worldTiles[x, z] = new Tile(emptyTilePrefab.transform, new Vector3Int(x, 0, z), Quaternion.identity, transform);
             return;
         }
 
@@ -129,7 +133,7 @@ public class WorldGenerator : MonoBehaviour
 
             if (pos.Item1 < 0 || pos.Item1 >= worldSize || pos.Item2 < 0 || pos.Item2 >= worldSize)
             {
-                tiles[i] = new Tile(new Vector3Int(pos.Item1, 0, pos.Item2), transform);
+                tiles[i] = new Tile(emptyTilePrefab.transform, new Vector3Int(pos.Item1, 0, pos.Item2), Quaternion.identity, transform);
             }
             else
             {

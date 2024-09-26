@@ -15,18 +15,7 @@ public class Tile
     public Zone[] nodeZones = null;
 
 
-    public Tile(Vector3Int tilePos, Transform parent) 
-    {
-        connectingSides = 0b0000;
-        this.tilePos = tilePos;
-
-        tileObject = GameObject.Instantiate(Resources.Load<Transform>("EndTiles/tile_empty"), tilePos * WorldGenerator.tileScale, Quaternion.identity, parent);
-        GameObject.Destroy(tileObject.GetComponent<TilePrefab>());
-
-        tileObject.name += " " + ToString() + " " + tilePos.ToString();
-    }
-
-    public Tile(Transform prefab, Vector3Int tilePos, Quaternion rotation, Transform parent, int connectingSides)
+    public Tile(Transform prefab, Vector3Int tilePos, Quaternion rotation, Transform parent, int connectingSides = 0b0000)
     {
         this.tilePos = tilePos;
         this.connectingSides = connectingSides;
@@ -36,12 +25,14 @@ public class Tile
 
         tileObject.name += " " + ToString() + " " + tilePos.ToString();
 
-        this.nodeZones = tileObject.GetComponent<TilePrefab>().nodeZones;
+        nodeZones = tileObject.GetComponent<TilePrefab>().nodeZones;
 
         for (int i = 0; i < nodeZones.Length; i++)
         {
             nodeZones[i].rotate(rotation);
         }
+
+        if (nodeZones != null && nodeZones.Length == 0) nodeZones = null;
     }
 
     public Vector3 getRandomNodePosition()
@@ -53,6 +44,4 @@ public class Tile
     {
         return System.Convert.ToString(connectingSides, 2);
     }
-
-    
 }
