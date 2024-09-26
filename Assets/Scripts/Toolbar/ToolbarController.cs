@@ -7,7 +7,7 @@ namespace Toolbar
 {
     public class ToolbarController : MonoBehaviour
     {
-        public static int inventorySize = 4;
+        public int inventorySize { private set; get; } = 4;
 
         [SerializeField]
         private ToolbarUI toolbarUI;

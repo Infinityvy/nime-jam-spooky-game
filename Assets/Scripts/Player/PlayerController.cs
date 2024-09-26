@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Session.instance.paused) return;
 
-        for (int i = 0; i < ToolbarController.inventorySize; i++)
+        for (int i = 0; i < toolbarController.inventorySize; i++)
         {
             if (Input.GetKey(GameInputs.keys["Slot " + (i + 1)]))
             {
@@ -30,11 +30,11 @@ public class PlayerController : MonoBehaviour
 
         if(Input.mouseScrollDelta.y < 0)
         {
-            toolbarController.SelectSlot(GameUtility.loopIndex(toolbarController.getSelectedSlotIndex() + 1, ToolbarController.inventorySize));
+            toolbarController.SelectSlot(GameUtility.loopIndex(toolbarController.getSelectedSlotIndex() + 1, toolbarController.inventorySize));
         }
         else if(Input.mouseScrollDelta.y > 0)
         {
-            toolbarController.SelectSlot(GameUtility.loopIndex(toolbarController.getSelectedSlotIndex() - 1, ToolbarController.inventorySize));
+            toolbarController.SelectSlot(GameUtility.loopIndex(toolbarController.getSelectedSlotIndex() - 1, toolbarController.inventorySize));
         }
 
         if (Input.GetKeyDown(GameInputs.keys["Drop Item"]))
