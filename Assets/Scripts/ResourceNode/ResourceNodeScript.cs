@@ -19,7 +19,11 @@ namespace ResourceNode
                 return;
             }
 
-            playerController.ReceiveItem(itemGiven);
+            if (!playerController.ReceiveItem(itemGiven))
+            {
+                return;
+            }
+            
             Explode();
         }
 

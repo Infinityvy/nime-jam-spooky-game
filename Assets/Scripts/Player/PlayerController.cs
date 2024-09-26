@@ -78,15 +78,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ReceiveItem(BaseItem item)
+    public bool ReceiveItem(BaseItem item)
     {
-        if (toolbarController.AddItemToFreeSlot(item))
-        {
-            Debug.Log("Item added");
-        }
-        else
-        {
-            Debug.Log("Item not added no free slots");
-        }
+        return toolbarController.AddItemToFreeSlot(item);
+
     }
 }
