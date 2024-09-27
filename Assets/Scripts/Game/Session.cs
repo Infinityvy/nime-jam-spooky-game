@@ -34,7 +34,7 @@ public class Session : MonoBehaviour
         }
     }
 
-    void onCommand(TwitchUser user, TwitchCommand command)
+    private void onCommand(TwitchUser user, TwitchCommand command)
     {
         lastUser = user;
     }

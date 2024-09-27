@@ -60,6 +60,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: c22b8c15c64f9c649810b321f85150ff,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c22b8c15c64f9c649810b321f85150ff,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9ce605941687d9d4a8a002b058e3a33a, type: 2}
@@ -113,7 +118,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: -2586447599021983625, guid: c22b8c15c64f9c649810b321f85150ff, type: 3}
+  m_Mesh: {fileID: 5052006194056494081, guid: 0ae4442f45728c142800de63a7215097, type: 3}
 --- !u!114 &5031373558494801452
 MonoBehaviour:
   m_ObjectHideFlags: 0
