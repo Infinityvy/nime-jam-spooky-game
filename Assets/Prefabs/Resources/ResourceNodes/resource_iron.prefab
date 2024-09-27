@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4412768967184608800}
   - component: {fileID: 6295051905787959373}
   - component: {fileID: 4101675854702596104}
+  - component: {fileID: 515016766092173719}
   m_Layer: 0
   m_Name: resource_iron
   m_TagString: Interactable
@@ -108,3 +109,17 @@ CapsuleCollider:
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0.034415483, y: 0.15, z: 0}
+--- !u!114 &515016766092173719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2824198793303494470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fabfaf3b23f4259b8988de80795c91b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+  itemGiven: {fileID: 11400000, guid: 792cb8adfb617f7418f7bc193894350a, type: 2}
