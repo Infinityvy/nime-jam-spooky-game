@@ -35,6 +35,10 @@ namespace DetectionZone
             }
         }
 
+        public void RemoveIMineableFromList(IMineable mineable)
+        {
+            _mineables.Remove(mineable);
+        }
         public IEnumerable<IMineable> GetMineablesNearby()
         {
             return _mineables;

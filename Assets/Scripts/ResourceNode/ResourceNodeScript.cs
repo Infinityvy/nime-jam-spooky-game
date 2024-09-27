@@ -11,20 +11,21 @@ namespace ResourceNode
         [SerializeField]
         private BaseItem itemGiven;
 
-        public void Mine(PlayerController playerController)
+        public bool Mine(PlayerController playerController)
         {
             health--;
             if (health > 0)
             {
-                return;
+                return false;
             }
 
             if (!playerController.ReceiveItem(itemGiven))
             {
-                return;
+                return false;
             }
             
             Explode();
+            return true;
         }
 
         private void Explode()
