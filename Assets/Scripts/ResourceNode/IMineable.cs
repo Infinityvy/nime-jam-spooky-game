@@ -2,6 +2,6 @@ namespace ResourceNode
 {
     public interface IMineable
     {
-        void Mine(PlayerController playerController);
+        bool Mine(PlayerController playerController);
     }
 }

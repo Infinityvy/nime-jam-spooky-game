@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using DetectionZone;
 using Models.Items;
 using ResourceNode;
@@ -68,15 +69,26 @@ public class PlayerController : MonoBehaviour
 
     public void InteractWithNearbyObject()
     {
+        if (!playerDetectionZone)
+        {
+            return;
+        }
         if (!Input.GetKeyDown(GameInputs.keys["Interact"]))
         {
             return;
         }
 
         IEnumerable<IMineable> mineables = playerDetectionZone.GetMineablesNearby();
-        foreach (IMineable mineable in mineables)
+        IMineable mineable = mineables.FirstOrDefault();
+        if (mineable is null)
         {
-            mineable.Mine(this);
+            return;
+        }
+
+        bool mined = mineable.Mine(this);
+        if (mined)
+        {
+            playerDetectionZone.RemoveIMineableFromList(mineable);
         }
     }
 
