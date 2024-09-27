@@ -6,11 +6,13 @@ public class Hunter : Creature
 {
     private float maxIdleDurationInSeconds = 5f;
 
-    public Transform player;
+    private Transform player;
+
+    private Material mat;
 
     private void Start()
     {
-
+        mat = transform.GetChild(0).GetComponent<MeshRenderer>().material;
     }
 
     private void FixedUpdate()
@@ -39,11 +41,14 @@ public class Hunter : Creature
 
     private void huntPlayer()
     {
+        mat.color = Color.red;
         agent.SetDestination(player.position);
     }
 
     private void patrol()
     {
+        mat.color = Color.white;
+
         switch(state)
         {
             case CreatureState.MOVING:
@@ -73,10 +78,17 @@ public class Hunter : Creature
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer != LayerMask.NameToLayer("Player"))
+        if (other.gameObject.layer != LayerMask.NameToLayer("Player")) return;
+
+        Vector3 vectorToPlayer = other.transform.position - transform.position;
+
+        if (Physics.Raycast(transform.position + Vector3.up, vectorToPlayer, vectorToPlayer.magnitude, LayerMask.NameToLayer("World")))
         {
-            player = other.transform;
+            player = null;
+            return;
         }
+
+        player = other.transform;
     }
 
     private void OnTriggerExit(Collider other)
