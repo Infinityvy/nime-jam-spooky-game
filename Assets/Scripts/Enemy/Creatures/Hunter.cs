@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Hunter : Creature
 {
+    private float viewDistance = 25f;
     private float maxIdleDurationInSeconds = 5f;
 
     private Transform player;
@@ -13,6 +14,7 @@ public class Hunter : Creature
     private void Start()
     {
         mat = transform.GetChild(0).GetComponent<MeshRenderer>().material;
+        player = GameObject.Find("Player").transform;
     }
 
     private void FixedUpdate()
@@ -29,7 +31,7 @@ public class Hunter : Creature
             state = CreatureState.STOPPED;
         }
 
-        if (player != null)
+        if (detectPlayer())
         {
             huntPlayer();
         }
@@ -76,26 +78,14 @@ public class Hunter : Creature
         agent.SetDestination(WorldGenerator.instance.getRandomNodePosition());
     }
 
-    private void OnTriggerEnter(Collider other)
+    private bool detectPlayer()
     {
-        if (other.gameObject.layer != LayerMask.NameToLayer("Player")) return;
+        Vector3 vectorToPlayer = player.position - transform.position;
 
-        Vector3 vectorToPlayer = other.transform.position - transform.position;
+        if (vectorToPlayer.magnitude > viewDistance) return false;
 
-        if (Physics.Raycast(transform.position + Vector3.up, vectorToPlayer, vectorToPlayer.magnitude, LayerMask.NameToLayer("World")))
-        {
-            player = null;
-            return;
-        }
+        if (Physics.Raycast(transform.position + Vector3.up, vectorToPlayer.normalized, vectorToPlayer.magnitude, LayerMask.GetMask("World"))) return false;
 
-        player = other.transform;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            player = null;
-        }
+        return true;
     }
 }
