@@ -21,18 +21,14 @@ namespace ResourceNode
                 return false;
             }
 
-            if (!playerController.ReceiveItem(itemGiven))
+            if (itemGiven.DroppedItemPrefab)
             {
-                return false;
+                Instantiate(itemGiven.DroppedItemPrefab, transform.position + transform.up, transform.rotation);
             }
-            
-            Explode();
+
+            Destroy(gameObject);
             return true;
         }
 
-        private void Explode()
-        {
-            Destroy(gameObject);
-        }
     }
 }
