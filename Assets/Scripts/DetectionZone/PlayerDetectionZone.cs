@@ -8,7 +8,12 @@ namespace DetectionZone
     [RequireComponent(typeof(SphereCollider))]
     public class PlayerDetectionZone : MonoBehaviour
     {
+        public Camera mainCamera;
+        public RectTransform interactionKey;
+
         private readonly List<IInteractable> _interactables = new List<IInteractable>();
+
+        private IInteractable closestInteractable = null;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -58,6 +63,39 @@ namespace DetectionZone
 
                 return Vector3.Distance(position.position, mono.transform.position);
             });
+        }
+
+        private void Update()
+        {
+            closestInteractable = getClosestInteractable(transform.position);
+
+            if (closestInteractable == null || PlayerMovement.instance.frozen)
+            {
+                interactionKey.gameObject.SetActive(false);
+            }
+            else
+            {
+                interactionKey.gameObject.SetActive(true);
+                interactionKey.position = mainCamera.WorldToScreenPoint(closestInteractable.getHighlightButtonPos());
+            }
+        }
+
+        private IInteractable getClosestInteractable(Vector3 position)
+        {
+            if (_interactables.Count == 0) return null;
+
+            (IInteractable, float) closest = (null, float.MaxValue);
+
+            foreach(IInteractable interactable in _interactables)
+            {
+                MonoBehaviour mono = interactable as MonoBehaviour;
+
+                float distance = Vector3.Distance(position, mono.transform.position);
+
+                if(closest.Item2 >  distance) closest = (interactable, distance);
+            }
+
+            return closest.Item1;
         }
     }
 }

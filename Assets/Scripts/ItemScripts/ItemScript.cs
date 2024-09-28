@@ -16,5 +16,10 @@ namespace ItemScripts
             Destroy(gameObject);
             return true;
         }
+
+        public Vector3 getHighlightButtonPos()
+        {
+            return transform.position + Vector3.up * 0.5f;
+        }
     }
 }

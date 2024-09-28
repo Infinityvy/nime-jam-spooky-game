@@ -13,6 +13,11 @@ namespace ResourceNode
         [SerializeField]
         private BaseItem itemGiven;
 
+        public Vector3 getHighlightButtonPos()
+        {
+            return transform.position + Vector3.up * 1.5f;
+        }
+
         public bool Interact(PlayerController playerController)
         {
             health--;

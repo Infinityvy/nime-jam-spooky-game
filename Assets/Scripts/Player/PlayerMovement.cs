@@ -112,4 +112,17 @@ public class PlayerMovement : MonoBehaviour
             else spriteRenderer.flipX = false;
         }
     }
+
+    public void animateMiningCycle()
+    {
+        frozen = true;
+        animator.SetInteger("state", (int)AnimationState.MINE);
+        Invoke(nameof(stopMiningCycle), GameUtility.mineCycleDuration);
+    }
+
+    private void stopMiningCycle()
+    {
+        frozen = false;
+        animator.SetInteger("state", (int)AnimationState.IDLE);
+    }
 }

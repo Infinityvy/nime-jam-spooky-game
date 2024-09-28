@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DetectionZone;
 using Models.Items;
+using ResourceNode;
 using Toolbar;
 using UnityEngine;
 using IInteractable = Interfaces.IInteractable;
@@ -43,7 +44,13 @@ namespace Player
                 return;
             }
 
-            Instantiate(selectedItem.DroppedItemPrefab, transform.position + transform.up, transform.rotation);
+            float cursorAngle = GameUtility.getCursorAngleRelativeToPlayer();
+
+            Vector3 cursorDirection = Quaternion.Euler(0, cursorAngle, 0) * Vector3.forward;
+
+            Vector3 dropPos = transform.position + Vector3.up + cursorDirection;
+
+            Instantiate(selectedItem.DroppedItemPrefab, dropPos, Quaternion.identity);
             toolbarController.RemoveItemAtSelectedSlot();
         }
 
@@ -86,7 +93,7 @@ namespace Player
 
         public void InteractWithNearbyObject()
         {
-            if (!playerDetectionZone)
+            if (!playerDetectionZone || PlayerMovement.instance.frozen)
             {
                 return;
             }
@@ -102,6 +109,8 @@ namespace Player
             {
                 return;
             }
+
+            if (interactable is ResourceNodeScript) PlayerMovement.instance.animateMiningCycle();
 
             bool mined = interactable.Interact(this);
             if (mined)
