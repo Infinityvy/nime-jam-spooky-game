@@ -122,4 +122,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5
-  itemGiven: {fileID: 11400000, guid: 792cb8adfb617f7418f7bc193894350a, type: 2}
+  itemGiven: {fileID: 11400000, guid: e6a789fa5abf3474782633fae5c222f3, type: 2}
