@@ -1,9 +1,11 @@
 using Models.Items;
+using Player;
 using UnityEngine;
+using IInteractable = Interfaces.IInteractable;
 
 namespace ResourceNode
 {
-    public class ResourceNodeScript : MonoBehaviour, IMineable
+    public class ResourceNodeScript : MonoBehaviour, IInteractable
     {
         [SerializeField]
         private int health = 5;
@@ -11,7 +13,7 @@ namespace ResourceNode
         [SerializeField]
         private BaseItem itemGiven;
 
-        public bool Mine(PlayerController playerController)
+        public bool Interact(PlayerController playerController)
         {
             health--;
             if (health > 0)

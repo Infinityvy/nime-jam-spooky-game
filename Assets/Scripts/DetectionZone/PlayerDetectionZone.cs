@@ -1,5 +1,6 @@
 using System.Collections.Generic;
-using ResourceNode;
+using System.Linq;
+using Interfaces;
 using UnityEngine;
 
 namespace DetectionZone
@@ -7,7 +8,7 @@ namespace DetectionZone
     [RequireComponent(typeof(SphereCollider))]
     public class PlayerDetectionZone : MonoBehaviour
     {
-        private readonly List<IMineable> _mineables = new List<IMineable>();
+        private readonly List<IInteractable> _interactables = new List<IInteractable>();
 
         private void OnTriggerEnter(Collider other)
         {
@@ -16,9 +17,9 @@ namespace DetectionZone
                 return;
             }
 
-            if (other.TryGetComponent(out IMineable mineable))
+            if (other.TryGetComponent(out IInteractable interactable))
             {
-                _mineables.Add(mineable);
+                _interactables.Add(interactable);
             }
         }
 
@@ -29,19 +30,34 @@ namespace DetectionZone
                 return;
             }
 
-            if (other.TryGetComponent(out IMineable mineable))
+            if (other.TryGetComponent(out IInteractable interactable))
             {
-                _mineables.Remove(mineable);
+                _interactables.Remove(interactable);
             }
         }
 
-        public void RemoveIMineableFromList(IMineable mineable)
+        public void RemoveIMineableFromList(IInteractable interactable)
         {
-            _mineables.Remove(mineable);
+            _interactables.Remove(interactable);
         }
-        public IEnumerable<IMineable> GetMineablesNearby()
+
+        public IEnumerable<IInteractable> GetMineablesNearby(Transform position)
         {
-            return _mineables;
+            if (_interactables is null)
+            {
+                return Enumerable.Empty<IInteractable>();
+            }
+
+            return _interactables.OrderBy(interactable =>
+            {
+                MonoBehaviour mono = interactable as MonoBehaviour;
+                if (!mono)
+                {
+                    return float.MaxValue;
+                }
+
+                return Vector3.Distance(position.position, mono.transform.position);
+            });
         }
     }
 }

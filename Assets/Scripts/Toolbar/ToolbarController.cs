@@ -65,15 +65,17 @@ namespace Toolbar
             {
                 case null:
                     return;
-                case IInteractable toggleableItem:
-                    toggleableItem.Toggle();
-                    break;
             }
         }
 
         public int getSelectedSlotIndex()
         {
             return _toolbar.SelectedIndex;
+        }
+
+        public BaseItem GetSelectedSlotItem()
+        {
+            return _toolbar.GetSelectedItem();
         }
 
         public bool AddItemToFreeSlot(BaseItem baseItem)

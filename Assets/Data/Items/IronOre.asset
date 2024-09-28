@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0476735e847249f98fc6998efa42c00e, type: 3}
-  m_Name: SampleItem
+  m_Script: {fileID: 11500000, guid: 23bb3243d037466c9878872affe47134, type: 3}
+  m_Name: IronOre
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: SampleItem
+  <Name>k__BackingField: Iron Ore
   <Sprite>k__BackingField: {fileID: 553613737, guid: 17b3f9905189b8c4d89b82079e5e2f1b,
     type: 3}
-  <SampleProperty>k__BackingField: sampel prop
+  <DroppedItemPrefab>k__BackingField: {fileID: 677761445061205925, guid: 45adc2d0517e7764eafd129621989822,
+    type: 3}
