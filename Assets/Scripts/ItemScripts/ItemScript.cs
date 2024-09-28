@@ -12,9 +12,9 @@ namespace ItemScripts
 
         public bool Interact(PlayerController playerController)
         {
-            playerController.ReceiveItem(itemData);
-            Destroy(gameObject);
-            return true;
+            bool pickedUp = playerController.ReceiveItem(itemData);
+            if(pickedUp) Destroy(gameObject);
+            return pickedUp;
         }
 
         public Vector3 getHighlightButtonPos()

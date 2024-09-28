@@ -822,9 +822,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1047351948}
   - {fileID: 1213854445}
   - {fileID: 877428368}
-  - {fileID: 1047351948}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2783,7 +2783,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ec9b3e258b2c5428fd26865b2175cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frozen: 0
   rigidbody: {fileID: 1511547813}
   spriteRenderer: {fileID: 972194390}
   animator: {fileID: 972194389}

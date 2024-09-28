@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement instance;
 
-    public bool frozen = false;
+    public bool frozen { get; private set; } = false;
 
     [SerializeField]
     private new Rigidbody rigidbody;
@@ -113,16 +113,28 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void animateMiningCycle()
+    public void freezePlayer()
     {
         frozen = true;
+        rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    public void unfreezePlayer()
+    {
+        frozen = false;
+        rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+    }
+
+    public void animateMiningCycle()
+    {
+        freezePlayer();
         animator.SetInteger("state", (int)AnimationState.MINE);
         Invoke(nameof(stopMiningCycle), GameUtility.mineCycleDuration);
     }
 
     private void stopMiningCycle()
     {
-        frozen = false;
+        unfreezePlayer();
         animator.SetInteger("state", (int)AnimationState.IDLE);
     }
 }
