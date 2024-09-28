@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IronOre
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Iron Ore
-  <Sprite>k__BackingField: {fileID: 553613737, guid: 17b3f9905189b8c4d89b82079e5e2f1b,
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 5c8967a38ab1e2745943da21ac0a463d,
     type: 3}
   <DroppedItemPrefab>k__BackingField: {fileID: 677761445061205925, guid: 45adc2d0517e7764eafd129621989822,
     type: 3}
