@@ -1,11 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.AI.Navigation;
 using UnityEditor;
 using UnityEngine;
 
 public class WorldGenerator : MonoBehaviour
 {
+    public static WorldGenerator instance;
+
+    public event System.Action finishedGenerating;
+
+    [SerializeField]
+    private NavMeshSurface navMesh;
+
     private TilePrefab[] tilePrefabs;
     private TilePrefab emptyTilePrefab;
     private TilePrefab startTilePrefab;
@@ -21,6 +29,11 @@ public class WorldGenerator : MonoBehaviour
     private Tile[,] worldTiles;
     private int generatedTileCount = 0;
     private bool fullyGenerated = false;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -237,20 +250,29 @@ public class WorldGenerator : MonoBehaviour
     {
         for (int i = 0; i < resourceAmount; i++)
         {
-            int x = Random.Range(0, worldSize);
-            int z = Random.Range(0, worldSize);
-
-            Tile tile = worldTiles[x, z];
-            if(tile == null || tile.nodeZones == null)
-            {
-                i--;
-                continue;
-            }
-
-            Vector3 nodePosition = tile.getRandomNodePosition();
+            Vector3 nodePosition = getRandomNodePosition();
 
             Instantiate(resourcePrefabs["resource_iron"], nodePosition, Quaternion.identity, transform);
         }
+
+        navMesh.BuildNavMesh();
+
+        finishedGenerating.Invoke();
+    }
+
+    public Vector3 getRandomNodePosition()
+    {
+        Tile tile = null;
+
+        while (tile == null || tile.nodeZones == null)
+        {
+            int x = Random.Range(0, worldSize);
+            int z = Random.Range(0, worldSize);
+
+            tile = worldTiles[x, z];
+        }
+
+        return tile.getRandomNodePosition();
     }
 
     private void OnDrawGizmosSelected()

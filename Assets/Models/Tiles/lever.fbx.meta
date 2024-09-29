@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6c39d6980b4501044a2a166be73f763f
+guid: 64cee42e19eebca409134f41331451de
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,18 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Floor
-    second: {fileID: 2100000, guid: 9ce605941687d9d4a8a002b058e3a33a, type: 2}
+      name: Hole
+    second: {fileID: 2100000, guid: 09ffe3087e2f0414aa9a3005fd89ecc7, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Roof
-    second: {fileID: 2100000, guid: ab0b7878e7d434d4dbcadd85c59da524, type: 2}
+      name: Stick
+    second: {fileID: 2100000, guid: 9946467d00bdc22499a4745f47ca2538, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Walls
-    second: {fileID: 2100000, guid: 012ec544ab03b264690f6c31ba6378e2, type: 2}
+    second: {fileID: 2100000, guid: abd96bd2534d0644380bfc084c67f926, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -47,7 +47,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 0.5
@@ -105,7 +105,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.5
+    globalScale: 0.005
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
