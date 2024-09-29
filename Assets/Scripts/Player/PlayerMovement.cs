@@ -1,14 +1,10 @@
-using System;
-using Models.Items;
-using Toolbar;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement instance;
 
-    public bool frozen = false;
+    public bool frozen { get; private set; } = false;
 
     [SerializeField]
     private new Rigidbody rigidbody;
@@ -115,5 +111,30 @@ public class PlayerMovement : MonoBehaviour
             if (dotProduct > 0) spriteRenderer.flipX = true;
             else spriteRenderer.flipX = false;
         }
+    }
+
+    public void freezePlayer()
+    {
+        frozen = true;
+        rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    public void unfreezePlayer()
+    {
+        frozen = false;
+        rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+    }
+
+    public void animateMiningCycle()
+    {
+        freezePlayer();
+        animator.SetInteger("state", (int)AnimationState.MINE);
+        Invoke(nameof(stopMiningCycle), GameUtility.mineCycleDuration);
+    }
+
+    private void stopMiningCycle()
+    {
+        unfreezePlayer();
+        animator.SetInteger("state", (int)AnimationState.IDLE);
     }
 }

@@ -4,21 +4,22 @@ namespace Player
 {
     public class Flashlight : MonoBehaviour
     {
-        public static Flashlight instance;
+        public Camera mainCamera;
+        public Transform test;
 
         private new Light light;
 
         private void Start()
         {
             light = GetComponent<Light>();
-            instance = this;
         }
 
         private void Update()
         {
             if(Session.instance.paused) return;
 
-            rotateFlashlightToCursor();
+            //rotateFlashlightToCursor();
+            lookAtCursor();
             toggleFlashlight();
         }
 
@@ -32,26 +33,23 @@ namespace Player
 
         private void rotateFlashlightToCursor()
         {
-            Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+            float angle = GameUtility.getCursorAngleRelativeToPlayer();
 
-            Vector3 mousePosition = clampMousePosition(Input.mousePosition);
-
-            float xOffset = mousePosition.x - screenCenter.x;
-            float zOffset = mousePosition.y - screenCenter.y;
-
-            float angle = Vector3.Angle(Vector3.forward, new Vector3(xOffset, 0, zOffset));
-
-            angle *= xOffset > 0 ? 1 : -1;
-
-            transform.rotation = Quaternion.Euler(30, angle + 45, 0f);
+            transform.rotation = Quaternion.Euler(30, angle, 0f);
         }
 
-        private Vector3 clampMousePosition(Vector3 mousePosition)
+        private void lookAtCursor()
         {
-            float x = Mathf.Clamp(mousePosition.x, 0, Screen.width);
-            float y = Mathf.Clamp(mousePosition.y, 0, Screen.height);
+            Ray ray = mainCamera.ScreenPointToRay(GameUtility.clampMousePosition(Input.mousePosition));
+            RaycastHit hit;
 
-            return new Vector3(x, y, 0);
+            if (Physics.Raycast(ray, out hit))
+            {
+                Vector3 direction = hit.point - transform.position;
+                test.position = hit.point;
+                //direction.y = 0; // Optional: keep the object level on the y-axis
+                transform.forward = direction.normalized;
+            }
         }
     }
 }

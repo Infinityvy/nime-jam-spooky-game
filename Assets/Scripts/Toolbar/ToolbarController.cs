@@ -13,7 +13,7 @@ namespace Toolbar
         private ToolbarUI toolbarUI;
 
         private ToolbarModel _toolbar;
-
+        
         private void Awake()
         {
             if (toolbarUI is null)
@@ -27,6 +27,7 @@ namespace Toolbar
             toolbarUI.UpdateSelectedSlot(_toolbar.SelectedIndex);
         }
 
+        
         public void SelectSlot(int targetIndex)
         {
             if (!_toolbar.SelectSlot(targetIndex))
@@ -64,15 +65,28 @@ namespace Toolbar
             {
                 case null:
                     return;
-                case IInteractable toggleableItem:
-                    toggleableItem.Toggle();
-                    break;
             }
         }
 
         public int getSelectedSlotIndex()
         {
             return _toolbar.SelectedIndex;
+        }
+
+        public BaseItem GetSelectedSlotItem()
+        {
+            return _toolbar.GetSelectedItem();
+        }
+
+        public bool AddItemToFreeSlot(BaseItem baseItem)
+        {
+            bool isItemAdded = _toolbar.AddItemToFreeSlot(baseItem);
+            if (isItemAdded)
+            {
+                toolbarUI.UpdateToolbarSlots(_toolbar.Items);
+            }
+
+            return isItemAdded;
         }
     }
 }

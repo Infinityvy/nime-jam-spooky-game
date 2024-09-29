@@ -20,7 +20,7 @@ public class WorldGenerator : MonoBehaviour
 
     private Dictionary<string, Transform> resourcePrefabs = new Dictionary<string, Transform>();
 
-    public static readonly int worldSize = 11;
+    public static readonly int worldSize = 7;
     public static readonly int tileScale = 10;
 
     private static int resourceAmount = 20;
@@ -277,7 +277,7 @@ public class WorldGenerator : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if(!Application.isPlaying) return;
+        if(!Application.isPlaying || !fullyGenerated) return;
 
         Gizmos.color = Color.green;
 

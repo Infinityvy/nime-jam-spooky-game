@@ -1,56 +1,127 @@
-using Models.Items;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using DetectionZone;
+using Models.Items;
+using ResourceNode;
 using Toolbar;
 using UnityEngine;
+using IInteractable = Interfaces.IInteractable;
 
-public class PlayerController : MonoBehaviour
+namespace Player
 {
-    [SerializeField]
-    private ToolbarController toolbarController;
-
-    public BaseItem[] testItems;
-
-    void Update()
+    public class PlayerController : MonoBehaviour
     {
-        InteractWithInventory();
-    }
+        [SerializeField]
+        private ToolbarController toolbarController;
 
-    private void InteractWithInventory()
-    {
-        if (Session.instance.paused) return;
+        [SerializeField]
+        private PlayerDetectionZone playerDetectionZone;
 
-        for (int i = 0; i < toolbarController.inventorySize; i++)
+        private void Awake()
         {
-            if (Input.GetKey(GameInputs.keys["Slot " + (i + 1)]))
+            if (!toolbarController)
             {
-                toolbarController.SelectSlot(i);
+                throw new UnityException("Toolbar controller not attached to player controller");
+            }
+
+            if (!playerDetectionZone)
+            {
+                throw new UnityException("Player detection zone not attached to player controller");
             }
         }
 
-        if(Input.mouseScrollDelta.y < 0)
+        private void Update()
         {
-            toolbarController.SelectSlot(GameUtility.loopIndex(toolbarController.getSelectedSlotIndex() + 1, toolbarController.inventorySize));
-        }
-        else if(Input.mouseScrollDelta.y > 0)
-        {
-            toolbarController.SelectSlot(GameUtility.loopIndex(toolbarController.getSelectedSlotIndex() - 1, toolbarController.inventorySize));
+            InteractWithInventory();
+            InteractWithNearbyObject();
         }
 
-        if (Input.GetKeyDown(GameInputs.keys["Drop Item"]))
+        private void DropItem()
         {
+            BaseItem selectedItem = toolbarController.GetSelectedSlotItem();
+            if (!selectedItem)
+            {
+                return;
+            }
+
+            float cursorAngle = GameUtility.getCursorAngleRelativeToPlayer();
+
+            Vector3 cursorDirection = Quaternion.Euler(0, cursorAngle, 0) * Vector3.forward;
+
+            Vector3 dropPos = transform.position + Vector3.up + cursorDirection;
+
+            Instantiate(selectedItem.DroppedItemPrefab, dropPos, Quaternion.identity);
             toolbarController.RemoveItemAtSelectedSlot();
         }
 
-        if (Input.GetKeyDown(GameInputs.keys["Interact"]))
+        private void InteractWithInventory()
         {
-            int randomIndex = Random.Range(0, 2);
-            toolbarController.AddItemAtSelectedSlot(testItems[randomIndex]);
+            if (Session.instance.paused)
+            {
+                return;
+            }
+
+            for (int i = 0; i < toolbarController.inventorySize; i++)
+            {
+                if (Input.GetKey(GameInputs.keys["Slot " + (i + 1)]))
+                {
+                    toolbarController.SelectSlot(i);
+                }
+            }
+
+            if (Input.mouseScrollDelta.y < 0)
+            {
+                toolbarController.SelectSlot(GameUtility.loopIndex(toolbarController.getSelectedSlotIndex() + 1,
+                    toolbarController.inventorySize));
+            }
+            else if (Input.mouseScrollDelta.y > 0)
+            {
+                toolbarController.SelectSlot(GameUtility.loopIndex(toolbarController.getSelectedSlotIndex() - 1,
+                    toolbarController.inventorySize));
+            }
+
+            if (Input.GetKeyDown(GameInputs.keys["Drop Item"]))
+            {
+                DropItem();
+            }
+
+            if (Input.GetKeyDown(GameInputs.keys["Use Item"]))
+            {
+                toolbarController.InteractWithSelectedItem();
+            }
         }
 
-        if (Input.GetKeyDown(GameInputs.keys["Use Item"]))
+        public void InteractWithNearbyObject()
         {
-            toolbarController.InteractWithSelectedItem();
+            if (!playerDetectionZone || PlayerMovement.instance.frozen)
+            {
+                return;
+            }
+
+            if (!Input.GetKeyDown(GameInputs.keys["Interact"]))
+            {
+                return;
+            }
+
+            IEnumerable<IInteractable> interactables = playerDetectionZone.GetMineablesNearby(transform);
+            IInteractable interactable = interactables.FirstOrDefault();
+            if (interactable is null)
+            {
+                return;
+            }
+
+            if (interactable is ResourceNodeScript) PlayerMovement.instance.animateMiningCycle();
+
+            bool mined = interactable.Interact(this);
+            if (mined)
+            {
+                playerDetectionZone.RemoveIMineableFromList(interactable);
+            }
+        }
+
+        public bool ReceiveItem(BaseItem item)
+        {
+            return toolbarController.AddItemToFreeSlot(item);
         }
     }
 }
