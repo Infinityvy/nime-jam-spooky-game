@@ -20,7 +20,7 @@ public class WorldGenerator : MonoBehaviour
 
     private Dictionary<string, Transform> resourcePrefabs = new Dictionary<string, Transform>();
 
-    public static readonly int worldSize = 7;
+    public static readonly int worldSize = 9;
     public static readonly int tileScale = 10;
 
     private static int resourceAmount = 20;

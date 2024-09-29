@@ -5,7 +5,6 @@ namespace Player
     public class Flashlight : MonoBehaviour
     {
         public Camera mainCamera;
-        public Transform test;
 
         private new Light light;
 
@@ -18,7 +17,6 @@ namespace Player
         {
             if(Session.instance.paused) return;
 
-            //rotateFlashlightToCursor();
             lookAtCursor();
             toggleFlashlight();
         }
@@ -31,23 +29,23 @@ namespace Player
             }
         }
 
-        private void rotateFlashlightToCursor()
-        {
-            float angle = GameUtility.getCursorAngleRelativeToPlayer();
+        //private void rotateFlashlightToCursor()
+        //{
+        //    float angle = GameUtility.getCursorAngleRelativeToPlayer();
 
-            transform.rotation = Quaternion.Euler(30, angle, 0f);
-        }
+        //    transform.rotation = Quaternion.Euler(30, angle, 0f);
+        //}
 
         private void lookAtCursor()
         {
             Ray ray = mainCamera.ScreenPointToRay(GameUtility.clampMousePosition(Input.mousePosition));
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
+            int layerMask = LayerMask.GetMask("Default", "World", "Creature");
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
                 Vector3 direction = hit.point - transform.position;
-                test.position = hit.point;
-                //direction.y = 0; // Optional: keep the object level on the y-axis
                 transform.forward = direction.normalized;
             }
         }

@@ -31,6 +31,7 @@ public class AudioManager : MonoBehaviour
     private LoadCategory[] categoriesToLoad = new LoadCategory[]
         {
             new LoadCategory("SFX/UI", false),
+            new LoadCategory("SFX/Player", false),
         };
 
 

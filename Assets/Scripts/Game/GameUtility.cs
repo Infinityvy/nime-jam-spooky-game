@@ -6,12 +6,14 @@ public static class GameUtility
 {
     public static readonly float mineCycleDuration = 0.5f;
 
-    public static void playSound(this AudioSource audioSource, string soundKey)
+    public static void playSound(this AudioSource audioSource, string soundKey, float volume = 1f, float pitch = 1f)
     {
+        audioSource.volume = volume;
+        audioSource.pitch = pitch;
         audioSource.clip = AudioManager.getAudioClip(soundKey);
         audioSource.Play();
     }
-    public static void playSoundIfReady(this AudioSource audioSource, string soundKey) { if (!audioSource.isPlaying) audioSource.playSound(soundKey); }
+    public static void playSoundIfReady(this AudioSource audioSource, string soundKey, float volume = 1f, float pitch = 1f) { if (!audioSource.isPlaying) audioSource.playSound(soundKey, volume, pitch); }
 
     public static int loopIndex(int index, int max)
     {

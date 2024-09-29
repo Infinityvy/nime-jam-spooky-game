@@ -26,14 +26,21 @@ namespace ResourceNode
                 return false;
             }
 
+            
+
+            Invoke(nameof(destroy), GameUtility.mineCycleDuration);
+            return true;
+        }
+
+
+        private void destroy()
+        {
             if (itemGiven.DroppedItemPrefab)
             {
                 Instantiate(itemGiven.DroppedItemPrefab, transform.position + transform.up, transform.rotation);
             }
 
             Destroy(gameObject);
-            return true;
         }
-
     }
 }

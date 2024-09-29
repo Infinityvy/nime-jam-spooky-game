@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class Hunter : Creature
 {
+    public Animator animator;
+    public Light mouthLight;
+
     private float viewDistance = 25f;
     private float maxIdleDurationInSeconds = 5f;
 
     private Transform player;
 
-    private Material mat;
+    private float patrolSpeed = 2.5f;
+    private float huntSpeed = 4.5f;
 
     private void Start()
     {
-        mat = transform.GetChild(0).GetComponent<MeshRenderer>().material;
         player = GameObject.Find("Player").transform;
     }
 
@@ -43,15 +46,19 @@ public class Hunter : Creature
 
     private void huntPlayer()
     {
-        mat.color = Color.red;
+        agent.speed = huntSpeed;
         agent.SetDestination(player.position);
+        animator.SetBool("mouthOpen", true);
+        mouthLight.enabled = true;
     }
 
     private void patrol()
     {
-        mat.color = Color.white;
+        agent.speed = patrolSpeed;
+        animator.SetBool("mouthOpen", false);
+        mouthLight.enabled = false;
 
-        switch(state)
+        switch (state)
         {
             case CreatureState.MOVING:
                 break;
