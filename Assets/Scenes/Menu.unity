@@ -240,6 +240,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5519072860902427767, guid: 9800c3052401f3f43891fe18ef1a10c0,
+        type: 3}
+      propertyPath: audioGroup
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6590573962111938744, guid: 9800c3052401f3f43891fe18ef1a10c0,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
@@ -3061,6 +3066,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: playClickMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519072860902427767, guid: 9800c3052401f3f43891fe18ef1a10c0,
+        type: 3}
+      propertyPath: audioGroup
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6590573962111938744, guid: 9800c3052401f3f43891fe18ef1a10c0,
         type: 3}

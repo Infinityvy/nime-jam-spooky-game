@@ -6,11 +6,13 @@ namespace Player
     {
         public Camera mainCamera;
 
-        private new Light light;
+        public AudioSource audioSource;
+
+        private Light lamp;
 
         private void Start()
         {
-            light = GetComponent<Light>();
+            lamp = GetComponent<Light>();
         }
 
         private void Update()
@@ -25,7 +27,8 @@ namespace Player
         {
             if (Input.GetKeyDown(GameInputs.keys["Toggle Flashlight"]))
             {
-                light.enabled = !light.enabled;
+                lamp.enabled = !lamp.enabled;
+                audioSource.playSound("flashlight_" + (lamp.enabled ? "on" : "off"));
             }
         }
 

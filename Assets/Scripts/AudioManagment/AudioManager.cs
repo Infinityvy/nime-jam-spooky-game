@@ -32,6 +32,7 @@ public class AudioManager : MonoBehaviour
         {
             new LoadCategory("SFX/UI", false),
             new LoadCategory("SFX/Player", false),
+            new LoadCategory("Ambient", false),
         };
 
 
@@ -56,11 +57,17 @@ public class AudioManager : MonoBehaviour
         {
             audioClips.Add(cl.name, cl);
         }
+
+        setGroupVolume(AudioGroup.Master, PlayerPrefs.GetFloat("MasterVolume", 50f));
+        setGroupVolume(AudioGroup.SFX, PlayerPrefs.GetFloat("SFXVolume", 50f));
+        setGroupVolume(AudioGroup.Music, PlayerPrefs.GetFloat("MusicVolume", 50f));
     }
 
     public void setGroupVolume(AudioGroup group, float volume)
     {
         audioMixer.SetFloat(group.ToString() + "Volume", Mathf.Log10(volume * 0.02f) * 20);
+
+        PlayerPrefs.SetFloat(group.ToString() + "Volume", volume);
     }
     public void setMasterVolume(Slider slider) { setGroupVolume(AudioGroup.Master, slider.value); }
     public void setSFXVolume(Slider slider) { setGroupVolume(AudioGroup.SFX, slider.value); }

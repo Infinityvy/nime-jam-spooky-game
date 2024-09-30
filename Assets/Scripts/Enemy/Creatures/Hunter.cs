@@ -1,3 +1,4 @@
+using Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -94,5 +95,15 @@ public class Hunter : Creature
         if (Physics.Raycast(transform.position + Vector3.up, vectorToPlayer.normalized, vectorToPlayer.magnitude, LayerMask.GetMask("World"))) return false;
 
         return true;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        PlayerController player;
+
+        if (other.TryGetComponent<PlayerController>(out player))
+        {
+            player.dealDamage(0.8f);
+        }
     }
 }

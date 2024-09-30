@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private ParticleSystem particles;
     
     public bool isMoving = false;
 
@@ -108,8 +110,17 @@ public class PlayerMovement : MonoBehaviour
 
             float dotProduct = Vector3.Dot(rightVector, rigidbody.velocity);
 
-            if (dotProduct > 0) spriteRenderer.flipX = true;
-            else spriteRenderer.flipX = false;
+
+            if (dotProduct > 0)
+            {
+                spriteRenderer.flipX = true;
+                particles.transform.localPosition = new Vector3(1, 0.8f, -1);
+            }
+            else
+            {
+                spriteRenderer.flipX = false;
+                particles.transform.localPosition = new Vector3(-1, 0.8f, 1);
+            }
         }
     }
 
@@ -136,5 +147,11 @@ public class PlayerMovement : MonoBehaviour
     {
         unfreezePlayer();
         animator.SetInteger("state", (int)AnimationState.IDLE);
+    }
+
+    public void animateDeath()
+    {
+        freezePlayer();
+        animator.SetInteger("state", (int)AnimationState.DIE);
     }
 }
