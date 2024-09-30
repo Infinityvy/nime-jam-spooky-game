@@ -5,8 +5,14 @@ using UnityEngine;
 
 public class Hunter : Creature
 {
-    public Animator animator;
-    public Light mouthLight;
+    [SerializeField]
+    private Animator animator;
+    [SerializeField]
+    private Light mouthLight;
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioSource secondaryAudioSource;
 
     private float viewDistance = 25f;
     private float maxIdleDurationInSeconds = 5f;
@@ -14,7 +20,7 @@ public class Hunter : Creature
     private Transform player;
 
     private float patrolSpeed = 2.5f;
-    private float huntSpeed = 4.5f;
+    private float huntSpeed = 4.8f;
 
     private void Start()
     {
@@ -51,6 +57,7 @@ public class Hunter : Creature
         agent.SetDestination(player.position);
         animator.SetBool("mouthOpen", true);
         mouthLight.enabled = true;
+        audioSource.playSoundIfReady("monster_scream0", 1.5f);
     }
 
     private void patrol()
@@ -58,6 +65,7 @@ public class Hunter : Creature
         agent.speed = patrolSpeed;
         animator.SetBool("mouthOpen", false);
         mouthLight.enabled = false;
+        audioSource.Stop();
 
         switch (state)
         {
@@ -104,6 +112,8 @@ public class Hunter : Creature
         if (other.TryGetComponent<PlayerController>(out player))
         {
             player.dealDamage(0.8f);
+            player.GetComponent<Rigidbody>().AddForce((player.transform.position - transform.position).normalized * 35f, ForceMode.Impulse);
+            secondaryAudioSource.playSoundIfReady("monster_bite");
         }
     }
 }

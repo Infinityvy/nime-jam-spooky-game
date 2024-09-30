@@ -19,6 +19,9 @@ MonoBehaviour:
   redirectUri: http://localhost/
   commandsMode: 0
   commandList:
+  - name: join
+    enabled: 1
+    cooldown: 0
   - name: info
     enabled: 1
     cooldown: 0
@@ -26,8 +29,5 @@ MonoBehaviour:
     enabled: 1
     cooldown: 0
   - name: spawn
-    enabled: 1
-    cooldown: 0
-  - name: join
     enabled: 1
     cooldown: 0

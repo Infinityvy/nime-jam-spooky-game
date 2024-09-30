@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public bool frozen { get; private set; } = false;
 
     [SerializeField]
-    private new Rigidbody rigidbody;
+    private Rigidbody playerRigid;
     [SerializeField]
     private SpriteRenderer spriteRenderer;
     [SerializeField]
@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        Vector3 horizontalVelocity = new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z);
+        Vector3 horizontalVelocity = new Vector3(playerRigid.velocity.x, 0, playerRigid.velocity.z);
 
         bool isSprinting = Input.GetKey(GameInputs.keys["Sprint"]);
         float currentMaxSpeed = (isSprinting ? maxSpeed * sprintMultiplier : maxSpeed);
@@ -78,17 +78,17 @@ public class PlayerMovement : MonoBehaviour
             && horizontalVelocity.magnitude < currentMaxSpeed)
         {
             direction = direction.normalized;
-            rigidbody.AddForce(800 * acceleration * Time.deltaTime * direction);
+            playerRigid.AddForce(800 * acceleration * Time.deltaTime * direction);
         }
-        else if (rigidbody.velocity.x != 0 || rigidbody.velocity.z != 0)
+        else if (playerRigid.velocity.x != 0 || playerRigid.velocity.z != 0)
         {
-            Vector3 reductionVector = 400.0f * -Time.deltaTime * new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z);
+            Vector3 reductionVector = 400.0f * -Time.deltaTime * new Vector3(playerRigid.velocity.x, 0, playerRigid.velocity.z);
 
-            rigidbody.AddForce(reductionVector);
+            playerRigid.AddForce(reductionVector);
         }
 
 
-        isMoving = (isMoving || rigidbody.velocity.magnitude > 0.3f);
+        isMoving = (isMoving || playerRigid.velocity.magnitude > 0.3f);
 
         // animate
         if (!isMoving)
@@ -108,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 rightVector = new Vector3(1, 0, -1).normalized;
 
-            float dotProduct = Vector3.Dot(rightVector, rigidbody.velocity);
+            float dotProduct = Vector3.Dot(rightVector, playerRigid.velocity);
 
 
             if (dotProduct > 0)
@@ -127,13 +127,13 @@ public class PlayerMovement : MonoBehaviour
     public void freezePlayer()
     {
         frozen = true;
-        rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        playerRigid.constraints = RigidbodyConstraints.FreezeAll;
     }
 
     public void unfreezePlayer()
     {
         frozen = false;
-        rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+        playerRigid.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
     }
 
     public void animateMiningCycle()

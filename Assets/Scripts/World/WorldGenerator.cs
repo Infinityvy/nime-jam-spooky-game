@@ -9,7 +9,7 @@ public class WorldGenerator : MonoBehaviour
 {
     public static WorldGenerator instance;
 
-    public event System.Action finishedGenerating;
+    public event System.Action onFinishedGenerating;
 
     [SerializeField]
     private NavMeshSurface navMesh;
@@ -257,7 +257,7 @@ public class WorldGenerator : MonoBehaviour
 
         navMesh.BuildNavMesh();
 
-        finishedGenerating.Invoke();
+        onFinishedGenerating.Invoke();
     }
 
     public Vector3 getRandomNodePosition()

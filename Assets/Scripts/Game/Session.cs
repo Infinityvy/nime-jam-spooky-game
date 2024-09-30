@@ -1,17 +1,25 @@
+using Models.Items;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using TwitchIntegration;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Session : MonoBehaviour
 {
     public static Session instance { get; private set; }
 
+    public static LevelData lastLevelData;
+
     public bool paused { private set; get; } = false;
 
     public UserMaster userMaster;
     public TwitchUser lastUser;
+
+    public int money = -1;
+    public int quota = -1;
+    public int dueIn = -1;
 
     void Start()
     {
@@ -24,6 +32,15 @@ public class Session : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
 
         //TwitchManager.OnTwitchCommandReceived += onCommand;
+
+        if (lastLevelData == null)
+        {
+            lastLevelData = new LevelData(0, 500, 3, new List<(BaseItem, Vector3)>());
+        }
+
+        WorldGenerator.instance.onFinishedGenerating += loadLevelData;
+
+        togglePaused(false);
     }
 
     void Update()
@@ -66,6 +83,59 @@ public class Session : MonoBehaviour
         {
             Time.timeScale = 1.0f;
             paused = false;
+        }
+    }
+
+    private void loadLevelData()
+    {
+        money = lastLevelData.money;
+        quota = lastLevelData.quota;
+        dueIn = lastLevelData.dueIn;
+
+        foreach((BaseItem, Vector3) storedItem in lastLevelData.storedItems)
+        {
+            BaseItem item = storedItem.Item1;
+            Vector3 pos = storedItem.Item2;
+
+            Instantiate(item.DroppedItemPrefab, pos, Quaternion.identity);
+        }
+
+        InfoDisplay.instance.updateText();
+    }
+
+    public void finalizeLevel(bool playerDied)
+    {
+        if(dueIn == 1)
+        {
+            lastLevelData.dueIn = 5;
+
+            if(!playerDied) lastLevelData.money += StorageZone.instance.getStoredValue();
+            lastLevelData.storedItems.Clear();
+
+            lastLevelData.quota += 500;
+
+            if(quota > lastLevelData.money)
+            {
+                lastLevelData = new LevelData(0, 500, 3, new List<(BaseItem, Vector3)>());
+
+                SceneManager.LoadScene("GameOver");
+            }
+            else
+            {
+                SceneManager.LoadScene("Main");
+            }
+        }
+        else
+        {
+            lastLevelData.quota = quota;
+            lastLevelData.money = money;
+            lastLevelData.dueIn = dueIn - 1;
+
+            if (playerDied) lastLevelData.storedItems.Clear();
+            else lastLevelData.storedItems = StorageZone.instance.getStoredItemsAndPositions();
+
+            if(playerDied) SceneManager.LoadScene("DeathScreen");
+            else SceneManager.LoadScene("Main");
         }
     }
 }

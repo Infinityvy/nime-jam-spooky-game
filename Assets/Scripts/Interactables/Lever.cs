@@ -19,7 +19,7 @@ public class Lever : MonoBehaviour, IInteractable
 
     public Vector3 getHighlightButtonPos()
     {
-        return transform.position + Vector3.up;
+        return transform.position + Vector3.up * 0.8f;
     }
 
     public bool Interact(PlayerController playerController)

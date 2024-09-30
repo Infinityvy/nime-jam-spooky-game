@@ -14,5 +14,8 @@ namespace Models.Items
 
         [field: SerializeField]
         public GameObject DroppedItemPrefab { get; private set; }
+
+        [field: SerializeField]
+        public int value { get; private set; }
     }
 }

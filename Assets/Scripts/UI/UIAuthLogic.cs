@@ -62,13 +62,13 @@ public class UIAuthLogic : MonoBehaviour
         {
             statusText.text = connected;
             statusText.color = green;
-            playButton.interactable = true;
+            //playButton.interactable = true;
         }
         else
         {
             statusText.text = notConnected + generateDots();
             statusText.color = red;
-            playButton.interactable = false;
+            //playButton.interactable = false;
         }
     }
 

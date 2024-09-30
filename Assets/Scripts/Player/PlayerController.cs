@@ -5,6 +5,7 @@ using Models.Items;
 using ResourceNode;
 using Toolbar;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using IInteractable = Interfaces.IInteractable;
 
@@ -24,6 +25,7 @@ namespace Player
         [SerializeField]
         private AudioSource audioSource;
 
+        private float maxHealth = 1f;
         private float health = 1f;
         private float healthRegen = 0.04f;
 
@@ -45,8 +47,6 @@ namespace Player
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.H)) dealDamage(0.2f);
-
             InteractWithInventory();
             InteractWithNearbyObject();
 
@@ -108,24 +108,30 @@ namespace Player
             }
         }
 
+        private float timeWhenLastInteracted = 0;
         public void InteractWithNearbyObject()
         {
-            if (!playerDetectionZone || PlayerMovement.instance.frozen)
+            if (!playerDetectionZone || PlayerMovement.instance.frozen || Time.time - timeWhenLastInteracted < GameUtility.mineCycleDuration)
             {
                 return;
             }
 
-            if (!Input.GetKeyDown(GameInputs.keys["Interact"]))
+            if (!Input.GetKey(GameInputs.keys["Interact"]))
             {
                 return;
             }
 
-            IEnumerable<IInteractable> interactables = playerDetectionZone.GetMineablesNearby(transform);
-            IInteractable interactable = interactables.FirstOrDefault();
+
+            //IEnumerable<IInteractable> interactables = playerDetectionZone.GetMineablesNearby(transform);
+            //IInteractable interactable = interactables.FirstOrDefault();
+            IInteractable interactable = playerDetectionZone.getClosestInteractable(transform.position);
             if (interactable is null)
             {
                 return;
             }
+
+
+            timeWhenLastInteracted = Time.time;
 
             if (interactable is ResourceNodeScript) PlayerMovement.instance.animateMiningCycle();
 
@@ -158,13 +164,16 @@ namespace Player
         {
             health += healthRegen * Time.deltaTime;
 
+            health =  Mathf.Clamp(health, 0, maxHealth);
+
             float alpha = 1f - ((health - 0.2f) / 0.8f);
-            bloodScreen.color = new Color(1, 1, 1, alpha);
+            bloodScreen.color = new Color(1, 1, 1, alpha * 0.8f);
         }
 
         private void die()
         {
-            PlayerMovement.instance.animateDeath();
+            //PlayerMovement.instance.animateDeath();
+            Session.instance.finalizeLevel(true);
         }
     }
 }

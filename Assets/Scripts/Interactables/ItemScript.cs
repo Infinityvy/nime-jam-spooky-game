@@ -13,10 +13,13 @@ namespace ItemScripts
         [SerializeField]
         private AudioSource audioSource;
 
+        public System.Action<ItemScript> onPickup;
+
         public bool Interact(PlayerController playerController)
         {
             bool pickedUp = playerController.ReceiveItem(itemData);
-            if(pickedUp) Destroy(gameObject);
+            if(onPickup != null) onPickup.Invoke(this);
+            if (pickedUp) Destroy(gameObject);
             return pickedUp;
         }
 
@@ -28,6 +31,11 @@ namespace ItemScripts
         private void OnCollisionEnter(Collision collision)
         {
             audioSource.playSound("metal_clang", 0.7f);
+        }
+
+        public BaseItem getItemData()
+        {
+            return itemData; 
         }
     }
 }

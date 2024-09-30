@@ -80,7 +80,7 @@ namespace DetectionZone
             }
         }
 
-        private IInteractable getClosestInteractable(Vector3 position)
+        public IInteractable getClosestInteractable(Vector3 position)
         {
             if (_interactables.Count == 0) return null;
 

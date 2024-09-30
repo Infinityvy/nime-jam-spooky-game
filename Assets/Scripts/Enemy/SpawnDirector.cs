@@ -10,7 +10,7 @@ public class SpawnDirector : MonoBehaviour
     {
         hunterPrefab = Resources.Load<Transform>("Creatures/Hunter");
 
-        WorldGenerator.instance.finishedGenerating += onWorldGenerated;
+        WorldGenerator.instance.onFinishedGenerating += onWorldGenerated;
     }
 
     private void onWorldGenerated()
