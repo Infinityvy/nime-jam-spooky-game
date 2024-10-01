@@ -7,6 +7,8 @@ namespace Toolbar
 {
     public class ToolbarController : MonoBehaviour
     {
+        public static ToolbarController instance;
+
         public int inventorySize { private set; get; } = 4;
 
         [SerializeField]
@@ -16,6 +18,8 @@ namespace Toolbar
         
         private void Awake()
         {
+            instance = this;
+
             if (toolbarUI is null)
             {
                 throw new UnityException("Toolbar UI reference missing");
@@ -87,6 +91,23 @@ namespace Toolbar
             }
 
             return isItemAdded;
+        }
+
+        public BaseItem[] getAllItems()
+        {
+            return _toolbar.Items;
+        }
+
+        public int getAllItemsValue()
+        {
+            int value = 0;
+
+            for(int i = 0; i < _toolbar.Items.Length; i++)
+            {
+                if (_toolbar.Items[i] != null) value += _toolbar.Items[i].value;
+            }
+
+            return value;
         }
     }
 }

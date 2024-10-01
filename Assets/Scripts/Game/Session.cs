@@ -2,6 +2,7 @@ using Models.Items;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Toolbar;
 using TwitchIntegration;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -109,7 +110,7 @@ public class Session : MonoBehaviour
         {
             lastLevelData.dueIn = 5;
 
-            if(!playerDied) lastLevelData.money += StorageZone.instance.getStoredValue();
+            if(!playerDied) lastLevelData.money += StorageZone.instance.getStoredValue() + ToolbarController.instance.getAllItemsValue();
             lastLevelData.storedItems.Clear();
 
             lastLevelData.quota += 500;
@@ -131,8 +132,25 @@ public class Session : MonoBehaviour
             lastLevelData.money = money;
             lastLevelData.dueIn = dueIn - 1;
 
-            if (playerDied) lastLevelData.storedItems.Clear();
-            else lastLevelData.storedItems = StorageZone.instance.getStoredItemsAndPositions();
+            if (playerDied)
+            {
+                lastLevelData.storedItems.Clear();
+            }
+            else
+            {
+                List<(BaseItem, Vector3)> storedItems = StorageZone.instance.getStoredItemsAndPositions();
+                BaseItem[] toolbarItems = ToolbarController.instance.getAllItems();
+
+                for(int i = 0; i < toolbarItems.Length; i++)
+                {
+                    if(toolbarItems[i] != null)
+                    {
+                        storedItems.Add((toolbarItems[i], new Vector3(1, 0.5f + 0.5f * i, -1 + (WorldGenerator.worldSize / 2 * WorldGenerator.tileScale))));
+                    }
+                }
+
+                lastLevelData.storedItems = storedItems;
+            }
 
             if(playerDied) SceneManager.LoadScene("DeathScreen");
             else SceneManager.LoadScene("Main");

@@ -30,7 +30,7 @@ namespace ItemScripts
 
         private void OnCollisionEnter(Collision collision)
         {
-            audioSource.playSound("metal_clang", 0.7f);
+            audioSource.playSound("metal_clang", 0.5f);
         }
 
         public BaseItem getItemData()

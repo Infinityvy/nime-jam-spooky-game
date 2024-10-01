@@ -11,6 +11,9 @@ public class SpawnDirector : MonoBehaviour
         hunterPrefab = Resources.Load<Transform>("Creatures/Hunter");
 
         WorldGenerator.instance.onFinishedGenerating += onWorldGenerated;
+
+        Invoke(nameof(onWorldGenerated), 30);
+        InvokeRepeating(nameof(onWorldGenerated), 90, 90);
     }
 
     private void onWorldGenerated()
