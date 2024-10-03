@@ -13,12 +13,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Stick
-    second: {fileID: 2100000, guid: 9946467d00bdc22499a4745f47ca2538, type: 2}
+    second: {fileID: 2100000, guid: abd96bd2534d0644380bfc084c67f926, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Walls
-    second: {fileID: 2100000, guid: abd96bd2534d0644380bfc084c67f926, type: 2}
+    second: {fileID: 2100000, guid: f8b15f17c4ab93c449419f2e83d79685, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -105,7 +105,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.005
+    globalScale: 0.5
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

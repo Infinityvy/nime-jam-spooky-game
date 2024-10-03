@@ -24,6 +24,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: buttons
     second: {fileID: 2100000, guid: 83316fca2a2c7bf4b82d7f734c093f53, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: panel
+    second: {fileID: 2100000, guid: f8b15f17c4ab93c449419f2e83d79685, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
