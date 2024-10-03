@@ -15,12 +15,17 @@ public class Session : MonoBehaviour
 
     public bool paused { private set; get; } = false;
 
+    public int money { private set; get; } = -1;
+    public int quota { private set; get; } = -1;
+    public int dueIn { private set; get; } = -1;
+
+    private readonly int startingDueIn = 3;
+
+    [SerializeField]
+    private AudioSource audioSource;
+
     public UserMaster userMaster;
     public TwitchUser lastUser;
-
-    public int money = -1;
-    public int quota = -1;
-    public int dueIn = -1;
 
     void Start()
     {
@@ -36,7 +41,7 @@ public class Session : MonoBehaviour
 
         if (lastLevelData == null)
         {
-            lastLevelData = new LevelData(0, 500, 3, new List<(BaseItem, Vector3)>());
+            lastLevelData = new LevelData(0, 500, startingDueIn, new List<(BaseItem, Vector3)>());
         }
 
         WorldGenerator.instance.onFinishedGenerating += loadLevelData;
@@ -102,13 +107,19 @@ public class Session : MonoBehaviour
         }
 
         InfoDisplay.instance.updateText();
+
+        if (dueIn == startingDueIn && money > 0)
+        {
+            audioSource.playSound("ka_ching");
+            Debug.Log("Played ka ching.");
+        }
     }
 
     public void finalizeLevel(bool playerDied)
     {
         if(dueIn == 1)
         {
-            lastLevelData.dueIn = 5;
+            lastLevelData.dueIn = startingDueIn;
 
             if(!playerDied) lastLevelData.money += StorageZone.instance.getStoredValue() + ToolbarController.instance.getAllItemsValue();
             lastLevelData.storedItems.Clear();
@@ -117,7 +128,7 @@ public class Session : MonoBehaviour
 
             if(quota > lastLevelData.money)
             {
-                lastLevelData = new LevelData(0, 500, 3, new List<(BaseItem, Vector3)>());
+                lastLevelData = new LevelData(0, 500, startingDueIn, new List<(BaseItem, Vector3)>());
 
                 SceneManager.LoadScene("GameOver");
             }

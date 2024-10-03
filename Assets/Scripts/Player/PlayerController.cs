@@ -121,9 +121,6 @@ namespace Player
                 return;
             }
 
-
-            //IEnumerable<IInteractable> interactables = playerDetectionZone.GetMineablesNearby(transform);
-            //IInteractable interactable = interactables.FirstOrDefault();
             IInteractable interactable = playerDetectionZone.getClosestInteractable(transform.position);
             if (interactable is null)
             {
@@ -134,6 +131,7 @@ namespace Player
             timeWhenLastInteracted = Time.time;
 
             if (interactable is ResourceNodeScript) PlayerMovement.instance.animateMiningCycle();
+            if (interactable is ItemScripts.ItemScript) audioSource.playSound("pickup", 0.5f); 
 
             bool mined = interactable.Interact(this);
             if (mined)
@@ -155,7 +153,7 @@ namespace Player
 
             health -= damage;
 
-            audioSource.playSound("hurt", 1f, 2f);
+            audioSource.playSound("hurt", 1f);
 
             if (health < 0) die();
         }
