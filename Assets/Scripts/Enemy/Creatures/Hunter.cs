@@ -20,11 +20,14 @@ public class Hunter : Creature
     private Transform player;
 
     private float patrolSpeed = 2.5f;
-    private float huntSpeed = 4.8f;
+    private float huntSpeed = 5f;
 
     private void Start()
     {
         player = GameObject.Find("Player").transform;
+
+        if (WorldGenerator.instance.tilesGenerated) initiate();
+        else WorldGenerator.instance.onFinishedGenerating += initiate;
     }
 
     private void FixedUpdate()
@@ -49,6 +52,11 @@ public class Hunter : Creature
         {
             patrol();
         }
+    }
+
+    private void initiate()
+    {
+        transform.position = WorldGenerator.instance.getRandomSpawnPosition();
     }
 
     private void huntPlayer()
@@ -91,7 +99,7 @@ public class Hunter : Creature
 
     private void setRandomDestination()
     {
-        agent.SetDestination(WorldGenerator.instance.getRandomNodePosition());
+        agent.SetDestination(WorldGenerator.instance.getRandomSpawnPosition());
     }
 
     private bool detectPlayer()

@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class SpawnDirector : MonoBehaviour
 {
-    private Transform hunterPrefab;
+    private Transform[] monsterPrefabs;
 
     private void Start()
     {
-        hunterPrefab = Resources.Load<Transform>("Creatures/Hunter");
+        monsterPrefabs = Resources.LoadAll<Transform>("Creatures");
 
-        WorldGenerator.instance.onFinishedGenerating += onWorldGenerated;
+        WorldGenerator.instance.onFinishedGenerating += spawnRandomEnemy;
 
-        Invoke(nameof(onWorldGenerated), 30);
-        InvokeRepeating(nameof(onWorldGenerated), 90, 90);
+        Invoke(nameof(spawnRandomEnemy), 30);
+        InvokeRepeating(nameof(spawnRandomEnemy), 90, 90);
     }
 
-    private void onWorldGenerated()
+    private void spawnRandomEnemy()
     {
-        spawnEnemy(hunterPrefab, WorldGenerator.instance.getRandomNodePosition());
+        spawnEnemy(monsterPrefabs[Random.Range(0, monsterPrefabs.Length)]);
     }
 
-    private void spawnEnemy(Transform prefab, Vector3 position)
+    private void spawnEnemy(Transform prefab)
     {
-        Instantiate(prefab, position, Quaternion.identity);
+        Instantiate(prefab, Vector3.zero, Quaternion.identity);
     }
 }

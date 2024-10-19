@@ -10,8 +10,6 @@ public class BounceObjectSpawner : MonoBehaviour
     private Quaternion spawnRot;
 
     private float spawnInterval = 3f;
-    private int maxObjectCount = 15;
-    private int objectCount = 1;
 
     private void Start()
     {
@@ -23,9 +21,6 @@ public class BounceObjectSpawner : MonoBehaviour
 
     private void spawnBounceObject()
     {
-        if (objectCount >= maxObjectCount) return;
-        objectCount++;
-
         Instantiate(bounceObject, spawnPos, spawnRot, transform);
     }
 }

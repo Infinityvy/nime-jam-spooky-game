@@ -35,7 +35,7 @@ public class Tile
         if (nodeZones != null && nodeZones.Length == 0) nodeZones = null;
     }
 
-    public Vector3 getRandomNodePosition()
+    public Vector3 getRandomSpawnPosition()
     {
         return nodeZones[Random.Range(0, nodeZones.Length)].getRandomPositionInZone() + tileObject.position;
     }

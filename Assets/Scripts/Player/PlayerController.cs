@@ -131,12 +131,12 @@ namespace Player
             timeWhenLastInteracted = Time.time;
 
             if (interactable is ResourceNodeScript) PlayerMovement.instance.animateMiningCycle();
-            if (interactable is ItemScripts.ItemScript) audioSource.playSound("pickup", 0.5f); 
 
             bool mined = interactable.Interact(this);
             if (mined)
             {
                 playerDetectionZone.RemoveIMineableFromList(interactable);
+                if (interactable is ItemScripts.ItemScript) audioSource.playSound("pickup", 0.5f);
             }
         }
 

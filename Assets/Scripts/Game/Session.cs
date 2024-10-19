@@ -111,7 +111,6 @@ public class Session : MonoBehaviour
         if (dueIn == startingDueIn && money > 0)
         {
             audioSource.playSound("ka_ching");
-            Debug.Log("Played ka ching.");
         }
     }
 
@@ -121,12 +120,14 @@ public class Session : MonoBehaviour
         {
             lastLevelData.dueIn = startingDueIn;
 
-            if(!playerDied) lastLevelData.money += StorageZone.instance.getStoredValue() + ToolbarController.instance.getAllItemsValue();
+            int storedValue = 0;
+            if (!playerDied) storedValue = StorageZone.instance.getStoredValue() + ToolbarController.instance.getAllItemsValue();
             lastLevelData.storedItems.Clear();
 
             lastLevelData.quota += 500;
+            lastLevelData.money += storedValue;
 
-            if(quota > lastLevelData.money)
+            if(quota > storedValue)
             {
                 lastLevelData = new LevelData(0, 500, startingDueIn, new List<(BaseItem, Vector3)>());
 

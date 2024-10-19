@@ -148,8 +148,8 @@ Transform:
   m_GameObject: {fileID: 81978787}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4, z: 1.5}
-  m_LocalScale: {x: 10, y: 0.5, z: 3}
+  m_LocalPosition: {x: 3.56, y: -4, z: 1.5}
+  m_LocalScale: {x: 15, y: 0.5, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1833157449}
@@ -665,7 +665,7 @@ Transform:
   m_GameObject: {fileID: 600385313}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -5, y: 1, z: 1.5}
+  m_LocalPosition: {x: -3.9399998, y: 1, z: 1.5}
   m_LocalScale: {x: 3, y: 0.5, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1347,8 +1347,8 @@ Transform:
   m_GameObject: {fileID: 796980556}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6, z: 1.5}
-  m_LocalScale: {x: 10, y: 0.5, z: 3}
+  m_LocalPosition: {x: 3.56, y: 6, z: 1.5}
+  m_LocalScale: {x: 15, y: 0.5, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1833157449}
@@ -1468,8 +1468,8 @@ Transform:
   m_GameObject: {fileID: 901644692}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1, z: 3}
-  m_LocalScale: {x: 10, y: 0.5, z: 10}
+  m_LocalPosition: {x: 3.56, y: 1, z: 3}
+  m_LocalScale: {x: 15, y: 0.5, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1833157449}
@@ -2016,8 +2016,8 @@ Transform:
   m_GameObject: {fileID: 1159340769}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 10, y: 0.5, z: 10}
+  m_LocalPosition: {x: 3.56, y: 1, z: 0}
+  m_LocalScale: {x: 15, y: 0.5, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1833157449}
@@ -3454,7 +3454,7 @@ Transform:
   m_GameObject: {fileID: 1907814710}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 5, y: 1, z: 1.5}
+  m_LocalPosition: {x: 11.059999, y: 1, z: 1.5}
   m_LocalScale: {x: 3, y: 0.5, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3730,12 +3730,12 @@ PrefabInstance:
     - target: {fileID: 7666124587764871502, guid: 9800c3052401f3f43891fe18ef1a10c0,
         type: 3}
       propertyPath: m_Name
-      value: MusicSlider
+      value: AmbientSlider
       objectReference: {fileID: 0}
     - target: {fileID: 7733836614630883455, guid: 9800c3052401f3f43891fe18ef1a10c0,
         type: 3}
       propertyPath: m_text
-      value: Music Volume
+      value: Ambient Volume
       objectReference: {fileID: 0}
     - target: {fileID: 8391793340179168967, guid: 9800c3052401f3f43891fe18ef1a10c0,
         type: 3}

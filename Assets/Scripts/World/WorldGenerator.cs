@@ -10,9 +10,10 @@ public class WorldGenerator : MonoBehaviour
     public static WorldGenerator instance;
 
     public event System.Action onFinishedGenerating;
+    public bool tilesGenerated = false;
 
     [SerializeField]
-    private NavMeshSurface navMesh;
+    private NavMeshSurface hunterNavMesh;
 
     private TilePrefab[] tilePrefabs;
     private TilePrefab emptyTilePrefab;
@@ -28,7 +29,6 @@ public class WorldGenerator : MonoBehaviour
 
     private Tile[,] worldTiles;
     private int generatedTileCount = 0;
-    private bool fullyGenerated = false;
 
     private void Awake()
     {
@@ -68,9 +68,9 @@ public class WorldGenerator : MonoBehaviour
     private void generateTile(int x, int z)
     {
         generatedTileCount++;
-        if (generatedTileCount == worldSize * worldSize && !fullyGenerated)
+        if (generatedTileCount == worldSize * worldSize && !tilesGenerated)
         {
-            fullyGenerated = true;
+            tilesGenerated = true;
             Invoke(nameof(generateResources), 0);
         }
 
@@ -250,17 +250,28 @@ public class WorldGenerator : MonoBehaviour
     {
         for (int i = 0; i < resourceAmount; i++)
         {
-            Vector3 nodePosition = getRandomNodePosition();
+            Vector3 nodePosition = getRandomSpawnPosition();
 
             Instantiate(resourcePrefabs["resource_iron"], nodePosition, Quaternion.identity, transform);
         }
 
-        navMesh.BuildNavMesh();
+        hunterNavMesh.BuildNavMesh();
 
         onFinishedGenerating.Invoke();
     }
 
-    public Vector3 getRandomNodePosition()
+    public Vector3 getRandomSpawnPosition()
+    {
+        Tile tile = getRandomTile();
+
+        return tile.getRandomSpawnPosition();
+    }
+
+    /// <summary>
+    /// Only returns tiles that allow spawning objects.
+    /// </summary>
+    /// <returns></returns>
+    public Tile getRandomTile()
     {
         Tile tile = null;
 
@@ -272,12 +283,17 @@ public class WorldGenerator : MonoBehaviour
             tile = worldTiles[x, z];
         }
 
-        return tile.getRandomNodePosition();
+        return tile;
+    }
+
+    public Tile getTile(int x, int z)
+    {
+        return worldTiles[x, z]; 
     }
 
     private void OnDrawGizmosSelected()
     {
-        if(!Application.isPlaying || !fullyGenerated) return;
+        if(!Application.isPlaying || !tilesGenerated) return;
 
         Gizmos.color = Color.green;
 

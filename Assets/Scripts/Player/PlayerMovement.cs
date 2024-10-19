@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -5,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
     public static PlayerMovement instance;
 
     public bool frozen { get; private set; } = false;
+
+    public Action playerIsMoving;
 
     [SerializeField]
     private Rigidbody playerRigid;
@@ -89,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         isMoving = (isMoving || playerRigid.velocity.magnitude > 0.3f);
+        if (isMoving) playerIsMoving.Invoke();
 
         // animate
         if (!isMoving)
@@ -128,12 +132,19 @@ public class PlayerMovement : MonoBehaviour
     {
         frozen = true;
         playerRigid.constraints = RigidbodyConstraints.FreezeAll;
+        animator.SetInteger("state", (int)AnimationState.IDLE);
     }
 
     public void unfreezePlayer()
     {
         frozen = false;
         playerRigid.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+    }
+
+    public void freezePlayerForDuration(float duration)
+    {
+        freezePlayer();
+        Invoke(nameof(unfreezePlayer), duration);
     }
 
     public void animateMiningCycle()

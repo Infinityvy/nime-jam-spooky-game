@@ -20,6 +20,6 @@ public class InfoDisplay : MonoBehaviour
         Session session = Session.instance;
         StorageZone storageZone = StorageZone.instance;
 
-        text.text = "Money: $" + session.money.ToString() + "\nQuota: $" + session.quota.ToString() + "\nStored: $" + storageZone.getStoredValue() + "\nDue in: " + session.dueIn.ToString() + " Layers";
+        text.text = "Money: " + session.money.ToString() + "\nStored/Quota\n" + storageZone.getStoredValue() + "/" + session.quota.ToString() + "\nDue in: " + session.dueIn.ToString() + " Layers";
     }
 }
